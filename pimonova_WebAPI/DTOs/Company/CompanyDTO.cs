@@ -1,9 +1,9 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using pimonova_WebAPI.Models;
 using System.ComponentModel.DataAnnotations;
 
-namespace pimonova_WebAPI.Models
+namespace pimonova_WebAPI.DTOs.Company
 {
-    public class Company
+    public class CompanyDTO
     {
         [Required]
         public string FullName { get; set; } = string.Empty;
@@ -12,10 +12,10 @@ namespace pimonova_WebAPI.Models
         public string ShortName { get; set; } = string.Empty;
 
         [Required]
-        public string RegAddress { get; set; } = string.Empty; // юридический адрес
+        public string RegAddress { get; set; } = string.Empty;
 
         [Required]
-        public string CurrAddress { get; set; } = string.Empty; // фактический адрес
+        public string CurrAddress { get; set; } = string.Empty;
 
         [Required]
         public string PhoneNumber { get; set; } = string.Empty;
@@ -34,10 +34,6 @@ namespace pimonova_WebAPI.Models
         public string Director { get; set; } = string.Empty;
 
         [Required]
-        public string LineOfWork { get; set; } = string.Empty; // вид и род деятельности
-
-        public virtual ICollection<User> Users { get; set; } = new List<User>();
-
-        public virtual ICollection<ObjectOfNEI> ObjectOfNEI { get; set; } = new List<ObjectOfNEI>();
+        public string LineOfWork { get; set; } = string.Empty;
     }
 }

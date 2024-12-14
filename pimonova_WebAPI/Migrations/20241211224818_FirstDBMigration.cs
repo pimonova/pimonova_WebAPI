@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace pimonova_WebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class FirstDBMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,7 +15,7 @@ namespace pimonova_WebAPI.Migrations
                 name: "Companies",
                 columns: table => new
                 {
-                    INN = table.Column<int>(type: "integer", nullable: false)
+                    INN = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FullName = table.Column<string>(type: "text", nullable: false),
                     ShortName = table.Column<string>(type: "text", nullable: false),
@@ -23,7 +23,7 @@ namespace pimonova_WebAPI.Migrations
                     CurrAddress = table.Column<string>(type: "text", nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: false),
                     KPP = table.Column<int>(type: "integer", nullable: false),
-                    OGRN = table.Column<int>(type: "integer", nullable: false),
+                    OGRN = table.Column<long>(type: "bigint", nullable: false),
                     Director = table.Column<string>(type: "text", nullable: false),
                     LineOfWork = table.Column<string>(type: "text", nullable: false)
                 },
@@ -36,15 +36,16 @@ namespace pimonova_WebAPI.Migrations
                 name: "ObjectsOfNEI",
                 columns: table => new
                 {
-                    CodeOfOONEI = table.Column<string>(type: "text", nullable: false),
-                    CompanyID = table.Column<int>(type: "integer", nullable: false),
+                    ObjectOfNEIID = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    CompanyID = table.Column<long>(type: "bigint", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     LocationAddress = table.Column<string>(type: "text", nullable: false),
                     Category = table.Column<string>(type: "text", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ObjectsOfNEI", x => x.CodeOfOONEI);
+                    table.PrimaryKey("PK_ObjectsOfNEI", x => x.ObjectOfNEIID);
                     table.ForeignKey(
                         name: "FK_ObjectsOfNEI_Companies_CompanyID",
                         column: x => x.CompanyID,
@@ -64,7 +65,7 @@ namespace pimonova_WebAPI.Migrations
                     Email = table.Column<string>(type: "text", nullable: false),
                     Role = table.Column<string>(type: "text", nullable: false),
                     Position = table.Column<string>(type: "text", nullable: false),
-                    CompanyID = table.Column<int>(type: "integer", nullable: false)
+                    CompanyID = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -83,7 +84,7 @@ namespace pimonova_WebAPI.Migrations
                 {
                     WorkshopID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CodeOfOONEI = table.Column<string>(type: "text", nullable: false),
+                    ObjectOfNEIID = table.Column<int>(type: "integer", nullable: false),
                     NumberInCompany = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false)
                 },
@@ -91,10 +92,11 @@ namespace pimonova_WebAPI.Migrations
                 {
                     table.PrimaryKey("PK_Workshops", x => x.WorkshopID);
                     table.ForeignKey(
-                        name: "FK_Workshops_ObjectsOfNEI_CodeOfOONEI",
-                        column: x => x.CodeOfOONEI,
+                        name: "FK_Workshops_ObjectsOfNEI_ObjectOfNEIID",
+                        column: x => x.ObjectOfNEIID,
                         principalTable: "ObjectsOfNEI",
-                        principalColumn: "CodeOfOONEI");
+                        principalColumn: "ObjectOfNEIID",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -134,9 +136,9 @@ namespace pimonova_WebAPI.Migrations
                 column: "CompanyID");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Workshops_CodeOfOONEI",
+                name: "IX_Workshops_ObjectOfNEIID",
                 table: "Workshops",
-                column: "CodeOfOONEI");
+                column: "ObjectOfNEIID");
         }
 
         /// <inheritdoc />

@@ -8,10 +8,10 @@ namespace pimonova_WebAPI.Models
     {
         [Key]
         [Required]
-        public string CodeOfOONEI { get; set; } = string.Empty; // уникальный номер ОНВ, присваивается государством
+        public int ObjectOfNEIID { get; set; }
 
         [Required]
-        public int? CompanyID { get; set; }
+        public long? CompanyID { get; set; }
         public Company? Company { get; set; }
 
         [Required]

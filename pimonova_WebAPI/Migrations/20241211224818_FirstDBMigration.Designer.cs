@@ -11,8 +11,8 @@ using pimonova_WebAPI.Data;
 namespace pimonova_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241208211928_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20241211224818_FirstDBMigration")]
+    partial class FirstDBMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,11 @@ namespace pimonova_WebAPI.Migrations
 
             modelBuilder.Entity("pimonova_WebAPI.Models.Company", b =>
                 {
-                    b.Property<int>("INN")
+                    b.Property<long>("INN")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("bigint");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("INN"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("INN"));
 
                     b.Property<string>("CurrAddress")
                         .IsRequired()
@@ -51,8 +51,8 @@ namespace pimonova_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("OGRN")
-                        .HasColumnType("integer");
+                    b.Property<long>("OGRN")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("PhoneNumber")
                         .IsRequired()
@@ -73,15 +73,18 @@ namespace pimonova_WebAPI.Migrations
 
             modelBuilder.Entity("pimonova_WebAPI.Models.ObjectOfNEI", b =>
                 {
-                    b.Property<string>("CodeOfOONEI")
-                        .HasColumnType("text");
+                    b.Property<int>("ObjectOfNEIID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("ObjectOfNEIID"));
 
                     b.Property<string>("Category")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<int>("CompanyID")
-                        .HasColumnType("integer");
+                    b.Property<long>("CompanyID")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("LocationAddress")
                         .IsRequired()
@@ -91,7 +94,7 @@ namespace pimonova_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("CodeOfOONEI");
+                    b.HasKey("ObjectOfNEIID");
 
                     b.HasIndex("CompanyID");
 
@@ -131,8 +134,8 @@ namespace pimonova_WebAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserID"));
 
-                    b.Property<int>("CompanyID")
-                        .HasColumnType("integer");
+                    b.Property<long>("CompanyID")
+                        .HasColumnType("bigint");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -169,10 +172,6 @@ namespace pimonova_WebAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("WorkshopID"));
 
-                    b.Property<string>("CodeOfOONEI")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -180,12 +179,12 @@ namespace pimonova_WebAPI.Migrations
                     b.Property<int>("NumberInCompany")
                         .HasColumnType("integer");
 
-                    b.Property<string>("ObjectOfNEICodeOfOONEI")
-                        .HasColumnType("text");
+                    b.Property<int>("ObjectOfNEIID")
+                        .HasColumnType("integer");
 
                     b.HasKey("WorkshopID");
 
-                    b.HasIndex("ObjectOfNEICodeOfOONEI");
+                    b.HasIndex("ObjectOfNEIID");
 
                     b.ToTable("Workshops");
                 });
@@ -227,7 +226,9 @@ namespace pimonova_WebAPI.Migrations
                 {
                     b.HasOne("pimonova_WebAPI.Models.ObjectOfNEI", "ObjectOfNEI")
                         .WithMany("Workshops")
-                        .HasForeignKey("ObjectOfNEICodeOfOONEI");
+                        .HasForeignKey("ObjectOfNEIID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("ObjectOfNEI");
                 });

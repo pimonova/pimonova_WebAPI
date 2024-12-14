@@ -11,7 +11,7 @@ namespace pimonova_WebAPI.Models
         public int WorkshopID { get; set; }
 
         [Required]
-        public string? CodeOfOONEI { get; set; }
+        public int? ObjectOfNEIID { get; set; }
         public ObjectOfNEI? ObjectOfNEI { get; set; }
 
         [Required]
