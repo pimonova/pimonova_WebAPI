@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using pimonova_WebAPI.Data;
 using pimonova_WebAPI.DTOs.Company;
 using System.IO;
@@ -18,17 +19,18 @@ namespace pimonova_WebAPI.Controllers
         }
 
         [HttpGet]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            var Companies = _context.Companies.Select(s => s.ToCompanyDTO()).ToList();
+            var Companies = await _context.Companies.ToListAsync();
+            var CompanyDTO = Companies.Select(s => s.ToCompanyDTO());
 
             return Ok(Companies);
         }
 
         [HttpGet("{INN}")]
-        public IActionResult GetByINN([FromRoute] long INN)
+        public async Task<IActionResult> GetByINN([FromRoute] long INN)
         {
-            var Company = _context.Companies.Find(INN);
+            var Company = await _context.Companies.FindAsync(INN);
 
             if (Company == null)
             {
@@ -39,21 +41,21 @@ namespace pimonova_WebAPI.Controllers
         }
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateCompanyRequestDTO CompanyDTO)
+        public async Task<IActionResult> Create([FromBody] CreateCompanyRequestDTO CompanyDTO)
         {
             var CompanyModel = CompanyDTO.ToCompanyFromCreateDTO();
 
-            _context.Companies.Add(CompanyModel);
-            _context.SaveChanges();
+            await _context.Companies.AddAsync(CompanyModel);
+            await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetByINN), new {INN = CompanyModel.INN}, CompanyModel.ToCompanyDTO());
         }
 
         [HttpPut]
         [Route("{INN}")]
-        public IActionResult Update([FromRoute] long INN, [FromBody] UpdateCompanyRequestDTO UpdateDTO)
+        public async Task<IActionResult> Update([FromRoute] long INN, [FromBody] UpdateCompanyRequestDTO UpdateDTO)
         {
-            var CompanyModel = _context.Companies.FirstOrDefault(x => x.INN == INN);
+            var CompanyModel = await _context.Companies.FirstOrDefaultAsync(x => x.INN == INN);
 
             if (CompanyModel == null)
             {
@@ -71,16 +73,16 @@ namespace pimonova_WebAPI.Controllers
             CompanyModel.Director = UpdateDTO.Director;
             CompanyModel.LineOfWork = UpdateDTO.LineOfWork;
 
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return Ok(CompanyModel.ToCompanyDTO());
         }
 
         [HttpDelete]
         [Route("{INN}")]
-        public IActionResult Delete([FromRoute] long INN)
+        public async Task<IActionResult> Delete([FromRoute] long INN)
         {
-            var companyModel = _context.Companies.FirstOrDefault(x => x.INN == INN);
+            var companyModel = await _context.Companies.FirstOrDefaultAsync(x => x.INN == INN);
 
             if(companyModel == null)
             {
@@ -88,7 +90,7 @@ namespace pimonova_WebAPI.Controllers
             }
 
             _context.Companies.Remove(companyModel);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
