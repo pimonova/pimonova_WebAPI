@@ -24,15 +24,25 @@ namespace pimonova_WebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var Companies = await _companyRepo.GetAllAsync();
             var CompanyDTO = Companies.Select(s => s.ToCompanyDTO());
 
             return Ok(Companies);
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{Id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int Id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var Company = await _companyRepo.GetByIdAsync(Id);
 
             if (Company == null)
@@ -46,6 +56,11 @@ namespace pimonova_WebAPI.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateCompanyRequestDTO CompanyDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var CompanyModel = CompanyDTO.ToCompanyFromCreateDTO();
             await _companyRepo.CreateAsync(CompanyModel);
 
@@ -53,9 +68,14 @@ namespace pimonova_WebAPI.Controllers
         }
 
         [HttpPut]
-        [Route("{Id}")]
+        [Route("{Id:int}")]
         public async Task<IActionResult> Update([FromRoute] int Id, [FromBody] UpdateCompanyRequestDTO UpdateCompanyDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var CompanyModel = await _companyRepo.UpdateAsync(Id, UpdateCompanyDTO);
 
             if (CompanyModel == null)
@@ -67,9 +87,14 @@ namespace pimonova_WebAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("{Id}")]
+        [Route("{Id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int Id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var CompanyModel = await _companyRepo.DeleteAsync(Id);
 
             if(CompanyModel == null)

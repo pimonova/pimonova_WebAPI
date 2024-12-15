@@ -25,15 +25,25 @@ namespace pimonova_WebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var ObjectsOfNEI = await _objectOfNEIRepo.GetAllAsync();
             var ObjectsOfNEIDTO = ObjectsOfNEI.Select(s => s.ToObjectOfNEIDTO());
 
             return Ok(ObjectsOfNEI);
         }
 
-        [HttpGet("{Id}")]
+        [HttpGet("{Id:int}")]
         public async Task<IActionResult> GetById([FromRoute] int Id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var ObjectOfNEI = await _objectOfNEIRepo.GetByIdAsync(Id);
 
             if (ObjectOfNEI == null)
@@ -44,9 +54,14 @@ namespace pimonova_WebAPI.Controllers
             return Ok(ObjectOfNEI.ToObjectOfNEIDTO());
         }
 
-        [HttpPost("{CompanyId}")]
+        [HttpPost("{CompanyId:int}")]
         public async Task<IActionResult> Create([FromRoute] int CompanyId, CreateObjectOfNEIRequestDTO ObjectOfNEIRequestDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             if (!await _companyRepo.CompanyExists(CompanyId))
             {
                 return BadRequest("Company does not exist");
@@ -59,9 +74,14 @@ namespace pimonova_WebAPI.Controllers
         }
 
         [HttpPut]
-        [Route("{Id}")]
+        [Route("{Id:int}")]
         public async Task<IActionResult> Update([FromRoute] int Id, [FromBody] UpdateObjectOfNEIRequestDTO UpdateObjectOfNEIDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var ObjectOfNEIModel = await _objectOfNEIRepo.UpdateAsync(Id, UpdateObjectOfNEIDTO.ToObjectOfNEIFromUpdateDTO());
 
             if (ObjectOfNEIModel == null)
@@ -73,9 +93,14 @@ namespace pimonova_WebAPI.Controllers
         }
 
         [HttpDelete]
-        [Route("{Id}")]
+        [Route("{Id:int}")]
         public async Task<IActionResult> Delete([FromRoute] int Id)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
             var ObjectOfNEIModel = await _objectOfNEIRepo.DeleteAsync(Id);
 
             if (ObjectOfNEIModel == null)
