@@ -10,5 +10,6 @@ namespace pimonova_WebAPI.Interfaces
         Task<Company> CreateAsync(Company CompanyModel);
         Task<Company?> UpdateAsync(int Id, UpdateCompanyRequestDTO companyRequestDTO);
         Task<Company?> DeleteAsync(int Id);
+        Task<bool> CompanyExists(int Id);
     }
 }

@@ -14,6 +14,11 @@ namespace pimonova_WebAPI.Repositories
             _context = context;
         }
 
+        public Task<bool> CompanyExists(int Id)
+        {
+            return _context.Companies.AnyAsync(x => x.Id == Id);
+        }
+
         public async Task<Company> CreateAsync(Company CompanyModel)
         {
             await _context.Companies.AddAsync(CompanyModel);
@@ -39,12 +44,12 @@ namespace pimonova_WebAPI.Repositories
 
         public async Task<List<Company>> GetAllAsync()
         {
-            return await _context.Companies.ToListAsync();
+            return await _context.Companies.Include(objOONEI => objOONEI.ObjectOfNEI).Include(u => u.Users).ToListAsync();
         }
 
         public async Task<Company?> GetByIdAsync(int Id)
         {
-            return await _context.Companies.FindAsync(Id);
+            return await _context.Companies.Include(objOONEI => objOONEI.ObjectOfNEI).Include(u => u.Users).FirstOrDefaultAsync(i => i.Id == Id);
         }
 
         public async Task<Company?> UpdateAsync(int Id, UpdateCompanyRequestDTO companyRequestDTO)

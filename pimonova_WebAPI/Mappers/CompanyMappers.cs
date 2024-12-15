@@ -21,6 +21,8 @@ namespace pimonova_WebAPI.Mappers
                 OGRN = CompanyModel.OGRN,
                 Director = CompanyModel.Director,
                 LineOfWork = CompanyModel.LineOfWork,
+                ObjectsOfNEI = CompanyModel.ObjectOfNEI.Select(objOONEI => objOONEI.ToObjectOfNEIDTO()).ToList(),
+                Users = CompanyModel.Users.Select(u => u.ToUserDTO()).ToList()
             };
         }
 

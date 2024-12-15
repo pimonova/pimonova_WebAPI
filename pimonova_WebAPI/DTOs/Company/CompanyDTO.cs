@@ -1,5 +1,7 @@
 ﻿using pimonova_WebAPI.Models;
 using System.ComponentModel.DataAnnotations;
+using pimonova_WebAPI.DTOs.ObjectOfNEI;
+using pimonova_WebAPI.DTOs.User;
 
 namespace pimonova_WebAPI.DTOs.Company
 {
@@ -38,5 +40,9 @@ namespace pimonova_WebAPI.DTOs.Company
 
         [Required]
         public string LineOfWork { get; set; } = string.Empty;
+
+        public List<ObjectOfNEIDTO> ObjectsOfNEI { get; set; }
+
+        public List<UserDTO> Users { get; set; }
     }
 }

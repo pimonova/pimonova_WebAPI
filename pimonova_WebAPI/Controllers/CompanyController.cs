@@ -37,7 +37,7 @@ namespace pimonova_WebAPI.Controllers
 
             if (Company == null)
             {
-                return NotFound();
+                return NotFound("Company is not found");
             }
 
             return Ok(Company.ToCompanyDTO());
@@ -54,13 +54,13 @@ namespace pimonova_WebAPI.Controllers
 
         [HttpPut]
         [Route("{Id}")]
-        public async Task<IActionResult> Update([FromRoute] int Id, [FromBody] UpdateCompanyRequestDTO UpdateDTO)
+        public async Task<IActionResult> Update([FromRoute] int Id, [FromBody] UpdateCompanyRequestDTO UpdateCompanyDTO)
         {
-            var CompanyModel = await _companyRepo.UpdateAsync(Id, UpdateDTO);
+            var CompanyModel = await _companyRepo.UpdateAsync(Id, UpdateCompanyDTO);
 
             if (CompanyModel == null)
             {
-                return NotFound();
+                return NotFound("Company is not found");
             }
 
             return Ok(CompanyModel.ToCompanyDTO());
@@ -74,7 +74,7 @@ namespace pimonova_WebAPI.Controllers
 
             if(CompanyModel == null)
             {
-                return NotFound();
+                return NotFound("Company is not found");
             }
 
             return NoContent();
