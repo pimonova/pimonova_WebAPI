@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using pimonova_WebAPI.Data;
 using pimonova_WebAPI.DTOs.Company;
+using pimonova_WebAPI.Interfaces;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using static pimonova_WebAPI.Mappers.CompanyMappers;
@@ -13,24 +14,26 @@ namespace pimonova_WebAPI.Controllers
     public class CompanyController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        public CompanyController(ApplicationDbContext context)
+        private readonly ICompanyRepository _companyRepo;
+        public CompanyController(ApplicationDbContext context, ICompanyRepository CompanyRepo)
         {
+            _companyRepo = CompanyRepo;
             _context = context;
         }
 
         [HttpGet]
         public async Task<IActionResult> GetAll()
         {
-            var Companies = await _context.Companies.ToListAsync();
+            var Companies = await _companyRepo.GetAllAsync();
             var CompanyDTO = Companies.Select(s => s.ToCompanyDTO());
 
             return Ok(Companies);
         }
 
-        [HttpGet("{INN}")]
-        public async Task<IActionResult> GetByINN([FromRoute] long INN)
+        [HttpGet("{Id}")]
+        public async Task<IActionResult> GetById([FromRoute] int Id)
         {
-            var Company = await _context.Companies.FindAsync(INN);
+            var Company = await _companyRepo.GetByIdAsync(Id);
 
             if (Company == null)
             {
@@ -44,53 +47,35 @@ namespace pimonova_WebAPI.Controllers
         public async Task<IActionResult> Create([FromBody] CreateCompanyRequestDTO CompanyDTO)
         {
             var CompanyModel = CompanyDTO.ToCompanyFromCreateDTO();
+            await _companyRepo.CreateAsync(CompanyModel);
 
-            await _context.Companies.AddAsync(CompanyModel);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction(nameof(GetByINN), new {INN = CompanyModel.INN}, CompanyModel.ToCompanyDTO());
+            return CreatedAtAction(nameof(GetById), new {Id = CompanyModel.Id}, CompanyModel.ToCompanyDTO());
         }
 
         [HttpPut]
-        [Route("{INN}")]
-        public async Task<IActionResult> Update([FromRoute] long INN, [FromBody] UpdateCompanyRequestDTO UpdateDTO)
+        [Route("{Id}")]
+        public async Task<IActionResult> Update([FromRoute] int Id, [FromBody] UpdateCompanyRequestDTO UpdateDTO)
         {
-            var CompanyModel = await _context.Companies.FirstOrDefaultAsync(x => x.INN == INN);
+            var CompanyModel = await _companyRepo.UpdateAsync(Id, UpdateDTO);
 
             if (CompanyModel == null)
             {
                 return NotFound();
             }
 
-            CompanyModel.FullName = UpdateDTO.FullName;
-            CompanyModel.ShortName = UpdateDTO.ShortName;
-            CompanyModel.RegAddress = UpdateDTO.RegAddress;
-            CompanyModel.CurrAddress = UpdateDTO.CurrAddress;
-            CompanyModel.PhoneNumber = UpdateDTO.PhoneNumber;
-            //CompanyModel.INN = UpdateDTO.
-            CompanyModel.KPP = UpdateDTO.KPP;
-            CompanyModel.OGRN = UpdateDTO.OGRN;
-            CompanyModel.Director = UpdateDTO.Director;
-            CompanyModel.LineOfWork = UpdateDTO.LineOfWork;
-
-            await _context.SaveChangesAsync();
-
             return Ok(CompanyModel.ToCompanyDTO());
         }
 
         [HttpDelete]
-        [Route("{INN}")]
-        public async Task<IActionResult> Delete([FromRoute] long INN)
+        [Route("{Id}")]
+        public async Task<IActionResult> Delete([FromRoute] int Id)
         {
-            var companyModel = await _context.Companies.FirstOrDefaultAsync(x => x.INN == INN);
+            var CompanyModel = await _companyRepo.DeleteAsync(Id);
 
-            if(companyModel == null)
+            if(CompanyModel == null)
             {
                 return NotFound();
             }
-
-            _context.Companies.Remove(companyModel);
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }

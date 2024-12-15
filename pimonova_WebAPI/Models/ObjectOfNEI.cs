@@ -11,7 +11,7 @@ namespace pimonova_WebAPI.Models
         public int ObjectOfNEIID { get; set; }
 
         [Required]
-        public long? CompanyID { get; set; }
+        public int? CompanyID { get; set; }
         public Company? Company { get; set; }
 
         [Required]

@@ -5,6 +5,10 @@ namespace pimonova_WebAPI.Models
 {
     public class Company
     {
+        [Key]
+        [Required]
+        public int Id { get; set; }
+
         [Required]
         public string FullName { get; set; } = string.Empty;
 
@@ -20,7 +24,6 @@ namespace pimonova_WebAPI.Models
         [Required]
         public string PhoneNumber { get; set; } = string.Empty;
 
-        [Key]
         [Required]
         public long INN { get; set; }
 

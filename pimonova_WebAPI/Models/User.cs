@@ -24,7 +24,7 @@ namespace pimonova_WebAPI.Models
         public string Position { get; set; } = string.Empty; // должность в компании
 
         [Required]
-        public long? CompanyID { get; set; }
+        public int? CompanyID { get; set; }
         public Company? Company { get; set; }
     }
 }

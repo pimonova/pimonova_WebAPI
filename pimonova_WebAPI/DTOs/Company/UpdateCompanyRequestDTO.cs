@@ -20,6 +20,9 @@ namespace pimonova_WebAPI.DTOs.Company
         public string PhoneNumber { get; set; } = string.Empty;
 
         [Required]
+        public long INN { get; set; }
+
+        [Required]
         public int KPP { get; set; }
 
         [Required]
