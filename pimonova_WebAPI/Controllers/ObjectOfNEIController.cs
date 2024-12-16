@@ -7,6 +7,7 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using static pimonova_WebAPI.Mappers.ObjectOfNEIMappers;
 using pimonova_WebAPI.DTOs.Company;
+using pimonova_WebAPI.Helpers;
 
 namespace pimonova_WebAPI.Controllers
 {
@@ -23,14 +24,14 @@ namespace pimonova_WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] QueryObjectForObjectOfNEI Query)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var ObjectsOfNEI = await _objectOfNEIRepo.GetAllAsync();
+            var ObjectsOfNEI = await _objectOfNEIRepo.GetAllAsync(Query);
             var ObjectsOfNEIDTO = ObjectsOfNEI.Select(s => s.ToObjectOfNEIDTO());
 
             return Ok(ObjectsOfNEI);

@@ -1,8 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.EntityFrameworkCore;
 using pimonova_WebAPI.Data;
 using pimonova_WebAPI.DTOs.Company;
+using pimonova_WebAPI.Helpers;
 using pimonova_WebAPI.Interfaces;
 using pimonova_WebAPI.Models;
+using System.Linq;
 
 namespace pimonova_WebAPI.Repositories
 {
@@ -42,9 +45,42 @@ namespace pimonova_WebAPI.Repositories
             return CompanyModel;
         }
 
-        public async Task<List<Company>> GetAllAsync()
+        public async Task<List<Company>> GetAllAsync(QueryObjectForCompany query)
         {
-            return await _context.Companies.Include(objOONEI => objOONEI.ObjectOfNEI).Include(u => u.Users).ToListAsync();
+            var Companies = _context.Companies.Include(objOONEI => objOONEI.ObjectOfNEI).Include(u => u.Users).AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query.FullName))
+            {
+                Companies = Companies.Where(c => c.FullName.Contains(query.FullName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.ShortName))
+            {
+                Companies = Companies.Where(c => c.ShortName.Contains(query.ShortName));
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.LineOfWork))
+            {
+                Companies = Companies.Where(c => c.LineOfWork.Contains(query.LineOfWork));
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.SortBy))
+            {
+                if (query.SortBy.Equals("INN", StringComparison.OrdinalIgnoreCase))
+                {
+                    Companies = query.IsDecsending ? Companies.OrderByDescending(c => c.INN) : Companies.OrderBy(c => c.INN);
+                }
+                if (query.SortBy.Equals("FullName", StringComparison.OrdinalIgnoreCase))
+                {
+                    Companies = query.IsDecsending ? Companies.OrderByDescending(c => c.FullName) : Companies.OrderBy(c => c.FullName);
+                }
+                if (query.SortBy.Equals("Id", StringComparison.OrdinalIgnoreCase))
+                {
+                    Companies = query.IsDecsending ? Companies.OrderByDescending(c => c.Id) : Companies.OrderBy(c => c.Id);
+                }
+            }
+
+            return await Companies.ToListAsync();
         }
 
         public async Task<Company?> GetByIdAsync(int Id)

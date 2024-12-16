@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using pimonova_WebAPI.Data;
 using pimonova_WebAPI.DTOs.Company;
 using pimonova_WebAPI.Interfaces;
+using pimonova_WebAPI.Helpers;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using static pimonova_WebAPI.Mappers.CompanyMappers;
@@ -22,14 +23,14 @@ namespace pimonova_WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] QueryObjectForCompany Query)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var Companies = await _companyRepo.GetAllAsync();
+            var Companies = await _companyRepo.GetAllAsync(Query);
             var CompanyDTO = Companies.Select(s => s.ToCompanyDTO());
 
             return Ok(Companies);

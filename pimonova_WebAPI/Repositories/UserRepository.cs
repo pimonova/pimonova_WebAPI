@@ -2,6 +2,7 @@
 using pimonova_WebAPI.Data;
 using pimonova_WebAPI.Interfaces;
 using pimonova_WebAPI.Models;
+using pimonova_WebAPI.Helpers;
 
 namespace pimonova_WebAPI.Repositories
 {
@@ -36,9 +37,28 @@ namespace pimonova_WebAPI.Repositories
             return UserModel;
         }
 
-        public async Task<List<User>> GetAllAsync()
+        public async Task<List<User>> GetAllAsync(QueryObjectForUser query)
         {
-            return await _context.Users.ToListAsync();
+            var Users = _context.Users.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query.Role))
+            {
+                Users = Users.Where(u => u.Role.Contains(query.Role));
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.SortBy))
+            {
+                if (query.SortBy.Equals("Surname", StringComparison.OrdinalIgnoreCase))
+                {
+                    Users = query.IsDecsending ? Users.OrderByDescending(u => u.Surname) : Users.OrderBy(u => u.Surname);
+                }
+                if (query.SortBy.Equals("Id", StringComparison.OrdinalIgnoreCase))
+                {
+                    Users = query.IsDecsending ? Users.OrderByDescending(u => u.UserID) : Users.OrderBy(u => u.UserID);
+                }
+            }
+
+            return await Users.ToListAsync();
         }
 
         public async Task<User?> GetByIdAsync(int Id)

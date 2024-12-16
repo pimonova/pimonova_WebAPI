@@ -7,6 +7,7 @@ using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using static pimonova_WebAPI.Mappers.UserMappers;
 using pimonova_WebAPI.DTOs.Company;
+using pimonova_WebAPI.Helpers;
 
 namespace pimonova_WebAPI.Controllers
 {
@@ -23,14 +24,14 @@ namespace pimonova_WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> GetAll([FromQuery] QueryObjectForUser Query)
         {
             if(!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            var Users = await _userRepo.GetAllAsync();
+            var Users = await _userRepo.GetAllAsync(Query);
             var UserDTO = Users.Select(s => s.ToUserDTO());
 
             return Ok(Users);

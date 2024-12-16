@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using pimonova_WebAPI.Data;
+using pimonova_WebAPI.Helpers;
 using pimonova_WebAPI.Interfaces;
 using pimonova_WebAPI.Models;
 
@@ -36,9 +37,32 @@ namespace pimonova_WebAPI.Repositories
             return ObjectOfNEIModel;
         }
 
-        public async Task<List<ObjectOfNEI>> GetAllAsync()
+        public async Task<List<ObjectOfNEI>> GetAllAsync(QueryObjectForObjectOfNEI query)
         {
-            return await _context.ObjectsOfNEI.ToListAsync();
+            var ObjectsOfNEI = _context.ObjectsOfNEI.AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(query.Category))
+            {
+                ObjectsOfNEI = ObjectsOfNEI.Where(o => o.Category.Contains(query.Category));
+            }
+
+            if (!string.IsNullOrWhiteSpace(query.SortBy))
+            {
+                if (query.SortBy.Equals("Category", StringComparison.OrdinalIgnoreCase))
+                {
+                    ObjectsOfNEI = query.IsDecsending ? ObjectsOfNEI.OrderByDescending(o => o.Category) : ObjectsOfNEI.OrderBy(o => o.Category);
+                }
+                if (query.SortBy.Equals("Name", StringComparison.OrdinalIgnoreCase))
+                {
+                    ObjectsOfNEI = query.IsDecsending ? ObjectsOfNEI.OrderByDescending(o => o.Name) : ObjectsOfNEI.OrderBy(o => o.Name);
+                }
+                if (query.SortBy.Equals("Id", StringComparison.OrdinalIgnoreCase))
+                {
+                    ObjectsOfNEI = query.IsDecsending ? ObjectsOfNEI.OrderByDescending(o => o.ObjectOfNEIID) : ObjectsOfNEI.OrderBy(o => o.ObjectOfNEIID);
+                }
+            }
+
+            return await ObjectsOfNEI.ToListAsync();
         }
 
         public async Task<ObjectOfNEI?> GetByIdAsync(int Id)
