@@ -112,5 +112,36 @@ namespace pimonova_WebAPI.Repositories
 
             return ExistingCompany;
         }
+
+        public async Task<List<CompanyWithCountedObjectsOfNEIDTO>> GetCountObjectsOfNEIAsync()
+        {
+            var CompanyWithObjectsofNEICount = from Company in _context.Companies
+                                               join ObjectOfNEI in _context.ObjectsOfNEI on Company.Id equals ObjectOfNEI.CompanyID into groupedObjects
+                                               select new CompanyWithCountedObjectsOfNEIDTO
+                                               {
+                                                   Id = Company.Id,
+                                                   ShortName = Company.ShortName,
+                                                   INN = Company.INN,
+                                                   CountedObjectsOfNEI = groupedObjects.Count()
+                                               };
+
+            return await CompanyWithObjectsofNEICount.ToListAsync();
+        }
+
+        public async Task<CompanyWithCountedUsersDTO?> GetCountUsersAsync(int Id)
+        {
+            var CompanyWithUsersCount = from Company in _context.Companies
+                                        join User in _context.Users on Company.Id equals User.CompanyID into groupedUsers
+                                        where Company.Id == Id
+                                        select new CompanyWithCountedUsersDTO
+                                        {
+                                            Id = Company.Id,
+                                            ShortName = Company.ShortName,
+                                            INN = Company.INN,
+                                            CountedUsers = groupedUsers.Count()
+                                        };
+
+            return await CompanyWithUsersCount.FirstOrDefaultAsync();
+        }
     }
 }

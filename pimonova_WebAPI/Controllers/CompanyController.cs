@@ -105,5 +105,37 @@ namespace pimonova_WebAPI.Controllers
 
             return NoContent();
         }
+
+        [HttpGet("CountObjectsOfNEI")]
+        //        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> CountObjectsOfNEI()
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var CompanyWithObjectsCount = await _companyRepo.GetCountObjectsOfNEIAsync();
+
+            if (CompanyWithObjectsCount == null)
+            {
+                return NotFound("Company is not found");
+            }
+
+            return Ok(CompanyWithObjectsCount);
+        }
+
+        [HttpGet("{Id:int}/countUsers")]
+        //        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> CountUsers([FromRoute] int Id)
+        {
+            if (!ModelState.IsValid) return BadRequest(ModelState);
+
+            var CompanyWithUsersCount = await _companyRepo.GetCountUsersAsync(Id);
+
+            if (CompanyWithUsersCount == null)
+            {
+                return NotFound("Company is not found");
+            }
+
+            return Ok(CompanyWithUsersCount);
+        }
     }
 }
