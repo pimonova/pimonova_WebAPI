@@ -32,16 +32,7 @@ namespace pimonova_WebAPI.Models
 
         [Required]
         public string Password { get; set; } = string.Empty;
-        // {
-        //     get
-        //     {
-        //         var sb = new StringBuilder();
-        //         foreach (var b in MD5.Create().ComputeHash(password))
-        //         sb.Append(b.ToString("x2"));
-        //         return sb.ToString();
-        //     }
-        //     set { password = Encoding.UTF8.GetBytes(value); }
-        // }
+
         public bool IsAdmin => Role == "Admin";
     }
 }

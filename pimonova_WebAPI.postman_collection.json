@@ -1,0 +1,1314 @@
+{
+	"info": {
+		"_postman_id": "27eaabed-c6c6-426b-a19d-135baa63758f",
+		"name": "pimonova_WebAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38528635"
+	},
+	"item": [
+		{
+			"name": "pimonova_WebAPI",
+			"item": [
+				{
+					"name": "Authentication",
+					"item": [
+						{
+							"name": "/pimonova_WebAPI/Authentication",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/pimonova_WebAPI/Authentication",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pimonova_WebAPI",
+										"Authentication"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"username\": \"<string>\",\n  \"password\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/Authentication",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"Authentication"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Companies",
+					"item": [
+						{
+							"name": "{Id}",
+							"item": [
+								{
+									"name": "countUsers",
+									"item": [
+										{
+											"name": "/pimonova_WebAPI/Companies/:Id/countUsers",
+											"request": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/Companies/:Id/countUsers",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"Companies",
+														":Id",
+														"countUsers"
+													],
+													"variable": [
+														{
+															"key": "Id",
+															"value": "<integer>",
+															"description": "(Required) "
+														}
+													]
+												}
+											},
+											"response": [
+												{
+													"name": "Success",
+													"originalRequest": {
+														"method": "GET",
+														"header": [],
+														"url": {
+															"raw": "{{baseUrl}}/pimonova_WebAPI/Companies/:Id/countUsers",
+															"host": [
+																"{{baseUrl}}"
+															],
+															"path": [
+																"pimonova_WebAPI",
+																"Companies",
+																":Id",
+																"countUsers"
+															],
+															"variable": [
+																{
+																	"key": "Id"
+																}
+															]
+														}
+													},
+													"status": "OK",
+													"code": 200,
+													"_postman_previewlanguage": "text",
+													"header": [],
+													"cookie": [],
+													"body": ""
+												}
+											]
+										}
+									]
+								},
+								{
+									"name": "/pimonova_WebAPI/Companies/:Id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/Companies/:Id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"Companies",
+												":Id"
+											],
+											"variable": [
+												{
+													"key": "Id",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/Companies/:Id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"Companies",
+														":Id"
+													],
+													"variable": [
+														{
+															"key": "Id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/pimonova_WebAPI/Companies/:Id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"currAddress\": \"<string>\",\n  \"director\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"inn\": \"<long>\",\n  \"kpp\": \"<integer>\",\n  \"lineOfWork\": \"<string>\",\n  \"ogrn\": \"<long>\",\n  \"phoneNumber\": \"<string>\",\n  \"regAddress\": \"<string>\",\n  \"shortName\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/Companies/:Id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"Companies",
+												":Id"
+											],
+											"variable": [
+												{
+													"key": "Id",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"currAddress\": \"<string>\",\n  \"director\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"inn\": \"<long>\",\n  \"kpp\": \"<integer>\",\n  \"lineOfWork\": \"<string>\",\n  \"ogrn\": \"<long>\",\n  \"phoneNumber\": \"<string>\",\n  \"regAddress\": \"<string>\",\n  \"shortName\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/Companies/:Id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"Companies",
+														":Id"
+													],
+													"variable": [
+														{
+															"key": "Id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/pimonova_WebAPI/Companies/:Id",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/Companies/:Id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"Companies",
+												":Id"
+											],
+											"variable": [
+												{
+													"key": "Id",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/Companies/:Id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"Companies",
+														":Id"
+													],
+													"variable": [
+														{
+															"key": "Id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "CountObjectsOfNEI",
+							"item": [
+								{
+									"name": "/pimonova_WebAPI/Companies/CountObjectsOfNEI",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/Companies/CountObjectsOfNEI",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"Companies",
+												"CountObjectsOfNEI"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/Companies/CountObjectsOfNEI",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"Companies",
+														"CountObjectsOfNEI"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/pimonova_WebAPI/Companies",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pimonova_WebAPI/Companies?FullName=<string>&ShortName=<string>&LineOfWork=<string>&SortBy=<string>&IsDecsending=<boolean>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pimonova_WebAPI",
+										"Companies"
+									],
+									"query": [
+										{
+											"key": "FullName",
+											"value": "<string>"
+										},
+										{
+											"key": "ShortName",
+											"value": "<string>"
+										},
+										{
+											"key": "LineOfWork",
+											"value": "<string>"
+										},
+										{
+											"key": "SortBy",
+											"value": "<string>"
+										},
+										{
+											"key": "IsDecsending",
+											"value": "<boolean>"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/Companies?FullName=<string>&ShortName=<string>&LineOfWork=<string>&SortBy=<string>&IsDecsending=<boolean>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"Companies"
+											],
+											"query": [
+												{
+													"key": "FullName",
+													"value": "<string>"
+												},
+												{
+													"key": "ShortName",
+													"value": "<string>"
+												},
+												{
+													"key": "LineOfWork",
+													"value": "<string>"
+												},
+												{
+													"key": "SortBy",
+													"value": "<string>"
+												},
+												{
+													"key": "IsDecsending",
+													"value": "<boolean>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "/pimonova_WebAPI/Companies",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"currAddress\": \"<string>\",\n  \"director\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"inn\": \"<long>\",\n  \"kpp\": \"<integer>\",\n  \"lineOfWork\": \"<string>\",\n  \"ogrn\": \"<long>\",\n  \"phoneNumber\": \"<string>\",\n  \"regAddress\": \"<string>\",\n  \"shortName\": \"<string>\"\n}",
+									"options": {
+										"raw": {
+											"headerFamily": "json",
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/pimonova_WebAPI/Companies",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pimonova_WebAPI",
+										"Companies"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"currAddress\": \"<string>\",\n  \"director\": \"<string>\",\n  \"fullName\": \"<string>\",\n  \"inn\": \"<long>\",\n  \"kpp\": \"<integer>\",\n  \"lineOfWork\": \"<string>\",\n  \"ogrn\": \"<long>\",\n  \"phoneNumber\": \"<string>\",\n  \"regAddress\": \"<string>\",\n  \"shortName\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/Companies",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"Companies"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "ObjectsOfNEI",
+					"item": [
+						{
+							"name": "{Id}",
+							"item": [
+								{
+									"name": "/pimonova_WebAPI/ObjectsOfNEI/:Id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/ObjectsOfNEI/:Id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"ObjectsOfNEI",
+												":Id"
+											],
+											"variable": [
+												{
+													"key": "Id",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/ObjectsOfNEI/:Id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"ObjectsOfNEI",
+														":Id"
+													],
+													"variable": [
+														{
+															"key": "Id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/pimonova_WebAPI/ObjectsOfNEI/:Id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"category\": \"<string>\",\n  \"companyID\": \"<integer>\",\n  \"locationAddress\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/ObjectsOfNEI/:Id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"ObjectsOfNEI",
+												":Id"
+											],
+											"variable": [
+												{
+													"key": "Id",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"category\": \"<string>\",\n  \"companyID\": \"<integer>\",\n  \"locationAddress\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/ObjectsOfNEI/:Id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"ObjectsOfNEI",
+														":Id"
+													],
+													"variable": [
+														{
+															"key": "Id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/pimonova_WebAPI/ObjectsOfNEI/:Id",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/ObjectsOfNEI/:Id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"ObjectsOfNEI",
+												":Id"
+											],
+											"variable": [
+												{
+													"key": "Id",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/ObjectsOfNEI/:Id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"ObjectsOfNEI",
+														":Id"
+													],
+													"variable": [
+														{
+															"key": "Id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "{CompanyId}",
+							"item": [
+								{
+									"name": "/pimonova_WebAPI/ObjectsOfNEI/:CompanyId",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"category\": \"<string>\",\n  \"companyID\": \"<integer>\",\n  \"locationAddress\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/ObjectsOfNEI/:CompanyId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"ObjectsOfNEI",
+												":CompanyId"
+											],
+											"variable": [
+												{
+													"key": "CompanyId",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"category\": \"<string>\",\n  \"companyID\": \"<integer>\",\n  \"locationAddress\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/ObjectsOfNEI/:CompanyId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"ObjectsOfNEI",
+														":CompanyId"
+													],
+													"variable": [
+														{
+															"key": "CompanyId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/pimonova_WebAPI/ObjectsOfNEI",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pimonova_WebAPI/ObjectsOfNEI?Category=<string>&SortBy=<string>&IsDecsending=<boolean>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pimonova_WebAPI",
+										"ObjectsOfNEI"
+									],
+									"query": [
+										{
+											"key": "Category",
+											"value": "<string>"
+										},
+										{
+											"key": "SortBy",
+											"value": "<string>"
+										},
+										{
+											"key": "IsDecsending",
+											"value": "<boolean>"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/ObjectsOfNEI?Category=<string>&SortBy=<string>&IsDecsending=<boolean>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"ObjectsOfNEI"
+											],
+											"query": [
+												{
+													"key": "Category",
+													"value": "<string>"
+												},
+												{
+													"key": "SortBy",
+													"value": "<string>"
+												},
+												{
+													"key": "IsDecsending",
+													"value": "<boolean>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Users",
+					"item": [
+						{
+							"name": "{Id}",
+							"item": [
+								{
+									"name": "/pimonova_WebAPI/Users/:Id",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/Users/:Id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"Users",
+												":Id"
+											],
+											"variable": [
+												{
+													"key": "Id",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/Users/:Id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"Users",
+														":Id"
+													],
+													"variable": [
+														{
+															"key": "Id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/pimonova_WebAPI/Users/:Id",
+									"request": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"companyID\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"position\": \"<string>\",\n  \"surname\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/Users/:Id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"Users",
+												":Id"
+											],
+											"variable": [
+												{
+													"key": "Id",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyID\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"name\": \"<string>\",\n  \"position\": \"<string>\",\n  \"surname\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/Users/:Id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"Users",
+														":Id"
+													],
+													"variable": [
+														{
+															"key": "Id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								},
+								{
+									"name": "/pimonova_WebAPI/Users/:Id",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/Users/:Id",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"Users",
+												":Id"
+											],
+											"variable": [
+												{
+													"key": "Id",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/Users/:Id",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"Users",
+														":Id"
+													],
+													"variable": [
+														{
+															"key": "Id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "{CompanyId}",
+							"item": [
+								{
+									"name": "/pimonova_WebAPI/Users/:CompanyId",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n  \"companyID\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"login\": \"<string>\",\n  \"name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"position\": \"<string>\",\n  \"surname\": \"<string>\"\n}",
+											"options": {
+												"raw": {
+													"headerFamily": "json",
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/Users/:CompanyId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"Users",
+												":CompanyId"
+											],
+											"variable": [
+												{
+													"key": "CompanyId",
+													"value": "<integer>",
+													"description": "(Required) "
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Success",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n  \"companyID\": \"<integer>\",\n  \"email\": \"<email>\",\n  \"login\": \"<string>\",\n  \"name\": \"<string>\",\n  \"password\": \"<string>\",\n  \"position\": \"<string>\",\n  \"surname\": \"<string>\"\n}",
+													"options": {
+														"raw": {
+															"headerFamily": "json",
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/pimonova_WebAPI/Users/:CompanyId",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"pimonova_WebAPI",
+														"Users",
+														":CompanyId"
+													],
+													"variable": [
+														{
+															"key": "CompanyId"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "text",
+											"header": [],
+											"cookie": [],
+											"body": ""
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "/pimonova_WebAPI/Users",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/pimonova_WebAPI/Users?Role=<string>&SortBy=<string>&IsDecsending=<boolean>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"pimonova_WebAPI",
+										"Users"
+									],
+									"query": [
+										{
+											"key": "Role",
+											"value": "<string>"
+										},
+										{
+											"key": "SortBy",
+											"value": "<string>"
+										},
+										{
+											"key": "IsDecsending",
+											"value": "<boolean>"
+										}
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/pimonova_WebAPI/Users?Role=<string>&SortBy=<string>&IsDecsending=<boolean>",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"pimonova_WebAPI",
+												"Users"
+											],
+											"query": [
+												{
+													"key": "Role",
+													"value": "<string>"
+												},
+												{
+													"key": "SortBy",
+													"value": "<string>"
+												},
+												{
+													"key": "IsDecsending",
+													"value": "<boolean>"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "text",
+									"header": [],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "/"
+		}
+	]
+}

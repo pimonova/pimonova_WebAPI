@@ -4,6 +4,8 @@ using pimonova_WebAPI.Models;
 using Microsoft.AspNetCore.Identity;
 using pimonova_WebAPI.Data;
 using Microsoft.EntityFrameworkCore;
+using pimonova_WebAPI.DTOs.Company;
+using pimonova_WebAPI.Interfaces;
 
 namespace pimonova_WebAPI.Controllers
 {
@@ -17,17 +19,17 @@ namespace pimonova_WebAPI.Controllers
             public string Password { get; set; }
         }
 
-        private readonly ApplicationDbContext _context;
-        public AuthController(ApplicationDbContext context)
+        private readonly IAuthRepository _authRepo;
+        public AuthController(ApplicationDbContext context, IAuthRepository AuthRepo)
         {
-            _context = context;
+            _authRepo = AuthRepo;
         }
 
         [HttpPost]
-        public object GetToken([FromBody] LoginData ld)
+        public async Task<object> GetToken([FromBody] LoginData ld)
         {
 
-            var User = _context.Users.FirstOrDefault(u => u.Login == ld.Username && u.Password == ld.Password);
+            var User = await _authRepo.GetFromLoginAndPassword(ld.Username, ld.Password);
             if (User == null)
             {
                 return Unauthorized("Login or password is incorrect");
@@ -43,8 +45,6 @@ namespace pimonova_WebAPI.Controllers
             var Token = AuthOptions.GenerateToken(User.IsAdmin);
 
             return Ok(Token); // Возвращаем токен
-
-            //return AuthOptions.GenerateToken(User.IsAdmin);
         }
     }
 }
