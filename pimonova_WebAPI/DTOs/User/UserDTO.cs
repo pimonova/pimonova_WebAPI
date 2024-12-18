@@ -18,8 +18,8 @@ namespace pimonova_WebAPI.DTOs.User
         [Required]
         public string Email { get; set; } = string.Empty;
 
-        [Required]
-        public string Role { get; set; } = string.Empty;
+        //[Required]
+        //public string Role { get; set; } = string.Empty;
 
         [Required]
         public string Position { get; set; } = string.Empty;

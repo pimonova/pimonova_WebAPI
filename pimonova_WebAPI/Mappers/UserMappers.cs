@@ -15,7 +15,7 @@ namespace pimonova_WebAPI.Mappers
                 Name = UserModel.Name,
                 Surname = UserModel.Surname,
                 Email = UserModel.Email,
-                Role = UserModel.Role,
+                //Role = UserModel.Role,
                 Position = UserModel.Position,
                 CompanyID = UserModel.CompanyID,
             };
@@ -28,7 +28,7 @@ namespace pimonova_WebAPI.Mappers
                 Name = UserDTO.Name,
                 Surname = UserDTO.Surname,
                 Email = UserDTO.Email,
-                Role = UserDTO.Role,
+                //Role = UserDTO.Role,
                 Position = UserDTO.Position,
                 CompanyID = CompanyId
             };
@@ -41,7 +41,7 @@ namespace pimonova_WebAPI.Mappers
                 Name = UserDTO.Name,
                 Surname = UserDTO.Surname,
                 Email = UserDTO.Email,
-                Role = UserDTO.Role,
+                //Role = UserDTO.Role,
                 Position = UserDTO.Position
             };
         }

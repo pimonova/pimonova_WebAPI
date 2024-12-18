@@ -78,7 +78,7 @@ namespace pimonova_WebAPI.Repositories
             ExistingUser.Name = UserModel.Name;
             ExistingUser.Surname = UserModel.Surname;
             ExistingUser.Email = UserModel.Email;
-            ExistingUser.Role = UserModel.Role;
+            //ExistingUser.Role = UserModel.Role;
             ExistingUser.Position = UserModel.Position;
 
             await _context.SaveChangesAsync();

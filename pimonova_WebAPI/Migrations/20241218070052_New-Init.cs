@@ -6,7 +6,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace pimonova_WebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstDBMigration : Migration
+    public partial class NewInit : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -15,13 +15,14 @@ namespace pimonova_WebAPI.Migrations
                 name: "Companies",
                 columns: table => new
                 {
-                    INN = table.Column<long>(type: "bigint", nullable: false)
+                    Id = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
                     FullName = table.Column<string>(type: "text", nullable: false),
                     ShortName = table.Column<string>(type: "text", nullable: false),
                     RegAddress = table.Column<string>(type: "text", nullable: false),
                     CurrAddress = table.Column<string>(type: "text", nullable: false),
                     PhoneNumber = table.Column<string>(type: "text", nullable: false),
+                    INN = table.Column<long>(type: "bigint", nullable: false),
                     KPP = table.Column<int>(type: "integer", nullable: false),
                     OGRN = table.Column<long>(type: "bigint", nullable: false),
                     Director = table.Column<string>(type: "text", nullable: false),
@@ -29,7 +30,7 @@ namespace pimonova_WebAPI.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Companies", x => x.INN);
+                    table.PrimaryKey("PK_Companies", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -38,7 +39,7 @@ namespace pimonova_WebAPI.Migrations
                 {
                     ObjectOfNEIID = table.Column<int>(type: "integer", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    CompanyID = table.Column<long>(type: "bigint", nullable: false),
+                    CompanyID = table.Column<int>(type: "integer", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     LocationAddress = table.Column<string>(type: "text", nullable: false),
                     Category = table.Column<string>(type: "text", nullable: false)
@@ -50,7 +51,7 @@ namespace pimonova_WebAPI.Migrations
                         name: "FK_ObjectsOfNEI_Companies_CompanyID",
                         column: x => x.CompanyID,
                         principalTable: "Companies",
-                        principalColumn: "INN",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -65,7 +66,7 @@ namespace pimonova_WebAPI.Migrations
                     Email = table.Column<string>(type: "text", nullable: false),
                     Role = table.Column<string>(type: "text", nullable: false),
                     Position = table.Column<string>(type: "text", nullable: false),
-                    CompanyID = table.Column<long>(type: "bigint", nullable: false)
+                    CompanyID = table.Column<int>(type: "integer", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -74,7 +75,7 @@ namespace pimonova_WebAPI.Migrations
                         name: "FK_Users_Companies_CompanyID",
                         column: x => x.CompanyID,
                         principalTable: "Companies",
-                        principalColumn: "INN",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

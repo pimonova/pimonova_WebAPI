@@ -11,8 +11,8 @@ using pimonova_WebAPI.Data;
 namespace pimonova_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241211224818_FirstDBMigration")]
-    partial class FirstDBMigration
+    [Migration("20241218102205_UserWithLoginAndPassword")]
+    partial class UserWithLoginAndPassword
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -26,11 +26,11 @@ namespace pimonova_WebAPI.Migrations
 
             modelBuilder.Entity("pimonova_WebAPI.Models.Company", b =>
                 {
-                    b.Property<long>("INN")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
+                        .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("INN"));
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CurrAddress")
                         .IsRequired()
@@ -43,6 +43,9 @@ namespace pimonova_WebAPI.Migrations
                     b.Property<string>("FullName")
                         .IsRequired()
                         .HasColumnType("text");
+
+                    b.Property<long>("INN")
+                        .HasColumnType("bigint");
 
                     b.Property<int>("KPP")
                         .HasColumnType("integer");
@@ -66,7 +69,7 @@ namespace pimonova_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("INN");
+                    b.HasKey("Id");
 
                     b.ToTable("Companies");
                 });
@@ -83,8 +86,8 @@ namespace pimonova_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<long>("CompanyID")
-                        .HasColumnType("bigint");
+                    b.Property<int>("CompanyID")
+                        .HasColumnType("integer");
 
                     b.Property<string>("LocationAddress")
                         .IsRequired()
@@ -134,14 +137,22 @@ namespace pimonova_WebAPI.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("UserID"));
 
-                    b.Property<long>("CompanyID")
-                        .HasColumnType("bigint");
+                    b.Property<int>("CompanyID")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Email")
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -160,6 +171,9 @@ namespace pimonova_WebAPI.Migrations
                     b.HasKey("UserID");
 
                     b.HasIndex("CompanyID");
+
+                    b.HasIndex("Login")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });

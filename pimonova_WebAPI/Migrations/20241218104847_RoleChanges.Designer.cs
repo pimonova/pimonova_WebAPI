@@ -11,8 +11,8 @@ using pimonova_WebAPI.Data;
 namespace pimonova_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241215111708_CompanyUpdateWithId")]
-    partial class CompanyUpdateWithId
+    [Migration("20241218104847_RoleChanges")]
+    partial class RoleChanges
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -144,15 +144,19 @@ namespace pimonova_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Login")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Position")
+                    b.Property<string>("Password")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("Role")
+                    b.Property<string>("Position")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -163,6 +167,9 @@ namespace pimonova_WebAPI.Migrations
                     b.HasKey("UserID");
 
                     b.HasIndex("CompanyID");
+
+                    b.HasIndex("Login")
+                        .IsUnique();
 
                     b.ToTable("Users");
                 });

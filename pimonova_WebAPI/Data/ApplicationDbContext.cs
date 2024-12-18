@@ -16,6 +16,11 @@ namespace pimonova_WebAPI.Data
         public virtual DbSet<Workshop> Workshops { get; set; }
         public virtual DbSet<Sector> Sectors { get; set; }
 
-
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<User>()
+                .HasIndex(u => u.Login)
+                .IsUnique(); // Указывает, что Username должен быть уникальным
+        }
     }
 }

@@ -7,6 +7,7 @@ using pimonova_WebAPI.Helpers;
 using System.IO;
 using System.Security.Cryptography.X509Certificates;
 using static pimonova_WebAPI.Mappers.CompanyMappers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace pimonova_WebAPI.Controllers
 {
@@ -107,7 +108,6 @@ namespace pimonova_WebAPI.Controllers
         }
 
         [HttpGet("CountObjectsOfNEI")]
-        //        [Authorize(Roles = "admin")]
         public async Task<IActionResult> CountObjectsOfNEI()
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
@@ -123,7 +123,7 @@ namespace pimonova_WebAPI.Controllers
         }
 
         [HttpGet("{Id:int}/countUsers")]
-        //        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CountUsers([FromRoute] int Id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);
