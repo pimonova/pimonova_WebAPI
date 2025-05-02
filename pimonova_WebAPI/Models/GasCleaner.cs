@@ -2,6 +2,7 @@
 
 namespace pimonova_WebAPI.Models
 {
+    // ГОУ - установка очистки газа
     public class GasCleaner
     {
         [Key]
@@ -18,7 +19,11 @@ namespace pimonova_WebAPI.Models
 
         public string Brand { get; set; } = string.Empty;
 
-        //public int StationaryIZAVToOut { get; set; }
+        public int? StationaryIZAVToOut { get; set; }
+        public StationaryIZAV? StationaryIZAV { get; set; }
 
+        public virtual ICollection<ResultOfGasCleanersInspection> ResultsOfGasCleanersInspection { get; set; } = new List<ResultOfGasCleanersInspection>();
+
+        public virtual ICollection<SourceOfPollutants> SourcesOfPollutants { get; set; } = new List<SourceOfPollutants>();
     }
 }

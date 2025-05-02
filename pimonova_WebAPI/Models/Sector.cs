@@ -21,5 +21,11 @@ namespace pimonova_WebAPI.Models
         public string Name { get; set; } = string.Empty;
 
         public virtual ICollection<GasCleaner> GasCleaners { get; set; } = new List<GasCleaner>();
+
+        public virtual ICollection<MobileIZAV> MobileIZAVs { get; set; } = new List<MobileIZAV>();
+
+        public virtual ICollection<SourceOfPollutants> SourcesOfPollutants { get; set; } = new List<SourceOfPollutants>();
+
+        public virtual ICollection<StationaryIZAV> StationaryIZAVs { get; set; } = new List<StationaryIZAV>();
     }
 }
