@@ -10,7 +10,7 @@ namespace pimonova_WebAPI.Mappers
         {
             return new CompanyDTO
             {
-                Id = CompanyModel.Id,
+                Id = CompanyModel.CompanyID,
                 FullName = CompanyModel.FullName,
                 ShortName = CompanyModel.ShortName,
                 RegAddress = CompanyModel.RegAddress,

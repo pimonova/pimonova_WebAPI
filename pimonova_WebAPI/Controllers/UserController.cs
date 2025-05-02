@@ -8,6 +8,7 @@ using System.Security.Cryptography.X509Certificates;
 using static pimonova_WebAPI.Mappers.UserMappers;
 using pimonova_WebAPI.DTOs.Company;
 using pimonova_WebAPI.Helpers;
+using pimonova_WebAPI.DTOs.ObjectOfNEI;
 
 namespace pimonova_WebAPI.Controllers
 {

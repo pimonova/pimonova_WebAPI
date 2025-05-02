@@ -5,32 +5,32 @@ namespace pimonova_WebAPI.Models
     public class User
     {
         [Key]
-        [Required]
+        //[Required]
         public int UserID { get; set; }
 
-        [Required]
+        //[Required]
         public string Name { get; set; } = string.Empty;
 
-        [Required]
+        //[Required]
         public string Surname { get; set; } = string.Empty;
 
-        [Required]
+        //[Required]
         public string Email { get; set; } = string.Empty;
 
-        [Required]
+        //[Required]
         public string Position { get; set; } = string.Empty; // должность в компании
 
-        [Required]
+        //[Required]
         public int? CompanyID { get; set; }
         public Company? Company { get; set; }
 
-        [Required]
+        //[Required]
         public string Login { get; set; } = string.Empty;
 
-        [Required]
+        //[Required]
         public string Role => CompanyID == 1? "Admin" : "User"; // права доступа (в приложении)
 
-        [Required]
+        //[Required]
         public string Password { get; set; } = string.Empty;
 
         public bool IsAdmin => Role == "Admin";

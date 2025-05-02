@@ -66,7 +66,7 @@ namespace pimonova_WebAPI.Controllers
             var CompanyModel = CompanyDTO.ToCompanyFromCreateDTO();
             await _companyRepo.CreateAsync(CompanyModel);
 
-            return CreatedAtAction(nameof(GetById), new {Id = CompanyModel.Id}, CompanyModel.ToCompanyDTO());
+            return CreatedAtAction(nameof(GetById), new {Id = CompanyModel.CompanyID}, CompanyModel.ToCompanyDTO());
         }
 
         [HttpPut]

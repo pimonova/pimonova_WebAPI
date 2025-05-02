@@ -19,7 +19,7 @@ namespace pimonova_WebAPI.Repositories
 
         public Task<bool> CompanyExists(int Id)
         {
-            return _context.Companies.AnyAsync(x => x.Id == Id);
+            return _context.Companies.AnyAsync(x => x.CompanyID == Id);
         }
 
         public async Task<Company> CreateAsync(Company CompanyModel)
@@ -32,7 +32,7 @@ namespace pimonova_WebAPI.Repositories
 
         public async Task<Company?> DeleteAsync(int Id)
         {
-            var CompanyModel = await _context.Companies.FirstOrDefaultAsync(x => x.Id == Id);
+            var CompanyModel = await _context.Companies.FirstOrDefaultAsync(x => x.CompanyID == Id);
 
             if (CompanyModel == null)
             {
@@ -76,7 +76,7 @@ namespace pimonova_WebAPI.Repositories
                 }
                 if (query.SortBy.Equals("Id", StringComparison.OrdinalIgnoreCase))
                 {
-                    Companies = query.IsDecsending ? Companies.OrderByDescending(c => c.Id) : Companies.OrderBy(c => c.Id);
+                    Companies = query.IsDecsending ? Companies.OrderByDescending(c => c.CompanyID) : Companies.OrderBy(c => c.CompanyID);
                 }
             }
 
@@ -85,12 +85,12 @@ namespace pimonova_WebAPI.Repositories
 
         public async Task<Company?> GetByIdAsync(int Id)
         {
-            return await _context.Companies.Include(objOONEI => objOONEI.ObjectOfNEI).Include(u => u.Users).FirstOrDefaultAsync(i => i.Id == Id);
+            return await _context.Companies.Include(objOONEI => objOONEI.ObjectOfNEI).Include(u => u.Users).FirstOrDefaultAsync(i => i.CompanyID == Id);
         }
 
         public async Task<Company?> UpdateAsync(int Id, UpdateCompanyRequestDTO companyRequestDTO)
         {
-            var ExistingCompany = await _context.Companies.FirstOrDefaultAsync(x => x.Id == Id);
+            var ExistingCompany = await _context.Companies.FirstOrDefaultAsync(x => x.CompanyID == Id);
 
             if (ExistingCompany == null)
             {
@@ -116,10 +116,10 @@ namespace pimonova_WebAPI.Repositories
         public async Task<List<CompanyWithCountedObjectsOfNEIDTO>> GetCountObjectsOfNEIAsync()
         {
             var CompanyWithObjectsofNEICount = from Company in _context.Companies
-                                               join ObjectOfNEI in _context.ObjectsOfNEI on Company.Id equals ObjectOfNEI.CompanyID into groupedObjects
+                                               join ObjectOfNEI in _context.ObjectsOfNEI on Company.CompanyID equals ObjectOfNEI.CompanyID into groupedObjects
                                                select new CompanyWithCountedObjectsOfNEIDTO
                                                {
-                                                   Id = Company.Id,
+                                                   Id = Company.CompanyID,
                                                    ShortName = Company.ShortName,
                                                    INN = Company.INN,
                                                    CountedObjectsOfNEI = groupedObjects.Count()
@@ -131,11 +131,11 @@ namespace pimonova_WebAPI.Repositories
         public async Task<CompanyWithCountedUsersDTO?> GetCountUsersAsync(int Id)
         {
             var CompanyWithUsersCount = from Company in _context.Companies
-                                        join User in _context.Users on Company.Id equals User.CompanyID into groupedUsers
-                                        where Company.Id == Id
+                                        join User in _context.Users on Company.CompanyID equals User.CompanyID into groupedUsers
+                                        where Company.CompanyID == Id
                                         select new CompanyWithCountedUsersDTO
                                         {
-                                            Id = Company.Id,
+                                            Id = Company.CompanyID,
                                             ShortName = Company.ShortName,
                                             INN = Company.INN,
                                             CountedUsers = groupedUsers.Count()

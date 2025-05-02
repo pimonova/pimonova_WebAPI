@@ -30,7 +30,9 @@ namespace pimonova_WebAPI.Mappers
                 Email = UserDTO.Email,
                 //Role = UserDTO.Role,
                 Position = UserDTO.Position,
-                CompanyID = CompanyId
+                CompanyID = CompanyId,
+                Login = UserDTO.Login,
+                Password = UserDTO.Password
             };
         }
 

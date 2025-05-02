@@ -7,17 +7,19 @@ namespace pimonova_WebAPI.Models
     public class Sector
     {
         [Key]
-        [Required]
+        //[Required]
         public int SectorID { get; set; }
 
-        [Required]
+        //[Required]
         public int? WorkshopID { get; set; }
         public Workshop? Workshop { get; set; }
 
-        [Required]
+        //[Required]
         public int NumberInCompany { get; set; }
 
-        [Required]
+        //[Required]
         public string Name { get; set; } = string.Empty;
+
+        public virtual ICollection<GasCleaner> GasCleaners { get; set; } = new List<GasCleaner>();
     }
 }
