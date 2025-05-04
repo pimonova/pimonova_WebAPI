@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace pimonova_WebAPI.Models
 {
+    [Table("ResultsOfGasCleanersInspection_Pollutants")]
     public class ResultOfGasCleanersInspection_Pollutant
     {
         [Key]

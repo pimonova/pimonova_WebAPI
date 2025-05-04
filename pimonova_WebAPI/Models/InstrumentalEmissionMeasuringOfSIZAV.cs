@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace pimonova_WebAPI.Models
 {
     // Результаты инструментального определения показателей выбросов
+    [Table("InstrumentalEmissionMeasuringsOfSIZAV")]
     public class InstrumentalEmissionMeasuringOfSIZAV
     {
         [Key]

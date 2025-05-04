@@ -3,12 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace pimonova_WebAPI.Models
 {
+    [Table("SourcesOfPollutants_Pollutants")]
     public class SourceOfPollutants_Pollutant
     {
         [Key]
         [Column(Order = 0)]
-        public int SourceOfPollutantsID { get; set; }
-        public virtual SourceOfPollutants? SourcesOfPollutant { get; set; }
+        public int? SourceOfPollutantsID { get; set; }
+        public virtual SourceOfPollutants? SourceOfPollutants { get; set; }
 
         [Key]
         [Column(Order = 1)]

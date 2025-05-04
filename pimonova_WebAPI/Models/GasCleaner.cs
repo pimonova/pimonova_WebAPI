@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pimonova_WebAPI.Models
 {
     // ГОУ - установка очистки газа
+    [Table("GasCleaners")]
     public class GasCleaner
     {
         [Key]

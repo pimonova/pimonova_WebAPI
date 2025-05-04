@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace pimonova_WebAPI.Models
 {
     // Object of negative environmental impact - объект негативного воздействия на окружающую среду (ОНВ)
+    [Table("ObjectsOfNEI")]
     public class ObjectOfNEI
     {
         [Key]
@@ -12,6 +13,7 @@ namespace pimonova_WebAPI.Models
 
         //[Required]
         public int? CompanyID { get; set; }
+        // Convention
         // NAvigation property - EF будет искать по коду совпадения и создавать отношения
         public Company? Company { get; set; }
 

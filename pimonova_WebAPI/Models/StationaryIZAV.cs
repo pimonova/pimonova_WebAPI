@@ -1,7 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pimonova_WebAPI.Models
 {
+    [Table("StationaryIZAVs")]
     public class StationaryIZAV
     {
         public int StationaryIZAVID { get; set; }
@@ -17,25 +19,25 @@ namespace pimonova_WebAPI.Models
 
         public float IZAVHeight { get; set; }
 
-        public float? EstuaryDiameter { get; set; }
+        public float EstuaryDiameter { get; set; }
 
         public int NumberInCompany { get; set; }
 
-        public float? EstuaryLength { get; set; }
+        public float EstuaryLength { get; set; }
 
-        public float? EstuaryWidth { get; set; }
+        public float EstuaryWidth { get; set; }
 
-        public float? ArealZAVWidth { get; set; }
+        public float ArealZAVWidth { get; set; }
 
         public short ModeNumber { get; set; }
 
-        public float? OutputSpeedOfGIM { get; set; }
+        public float OutputSpeedOfGIM { get; set; }
 
-        public float? VolumeOfGIM { get; set; }
+        public float VolumeOfGIM { get; set; }
 
-        public short? TemperatureOfGIM { get; set; }
+        public short TemperatureOfGIM { get; set; }
 
-        public float? DensityOfGIM { get; set; }
+        public float DensityOfGIM { get; set; }
 
         public virtual ICollection<GasCleaner> GasCleaners { get; set; } = new List<GasCleaner>();
 

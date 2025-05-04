@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace pimonova_WebAPI.Models
 {
     // Передвижные ИЗАВ
+    [Table("MobileIZAVs")]
     public class MobileIZAV
     {
         [Key]

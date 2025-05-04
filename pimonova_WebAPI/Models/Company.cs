@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace pimonova_WebAPI.Models
 {
+    [Table("Companies")]
     public class Company
     {
         [Key]

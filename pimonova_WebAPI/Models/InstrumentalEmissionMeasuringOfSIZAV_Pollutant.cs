@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace pimonova_WebAPI.Models
 {
+    [Table("InstrumentalEmissionMeasuringsOfSIZAV_Pollutants")]
     public class InstrumentalEmissionMeasuringOfSIZAV_Pollutant
     {
         [Key]

@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace pimonova_WebAPI.Models
 {
     // Загрязняющее вещество (ЗВ)
+    [Table("Pollutants")]
     public class Pollutant
     {
         [Key]

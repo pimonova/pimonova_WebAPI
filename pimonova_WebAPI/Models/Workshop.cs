@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 namespace pimonova_WebAPI.Models
 {
     // цех
+    [Table("Workshops")]
     public class Workshop
     {
         [Key]
