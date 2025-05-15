@@ -33,9 +33,13 @@ namespace pimonova_WebAPI.Controllers
             }
 
             var Users = await _userRepo.GetAllAsync(Query);
-            var UserDTO = Users.Select(s => s.ToUserDTO());
+            //var UserDTO = Users.Select(s => s.ToUserDTO());
 
-            return Ok(Users);
+            //return Ok(Users);
+
+            var UserDTOs = Users.Select(s => s.ToUserDTO());
+
+            return Ok(UserDTOs);
         }
 
         [HttpGet("{Id:int}")]

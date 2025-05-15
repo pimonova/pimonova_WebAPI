@@ -18,8 +18,5 @@ namespace pimonova_WebAPI.DTOs.ObjectOfNEI
         [MinLength(3, ErrorMessage = "Category must be at least 3 characters")]
         [MaxLength(50, ErrorMessage = "Category must be less than 50 characters")]
         public string Category { get; set; } = string.Empty;
-
-        [Required]
-        public int? CompanyID { get; set; }
     }
 }

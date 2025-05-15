@@ -47,7 +47,8 @@ namespace pimonova_WebAPI.Repositories
 
         public async Task<List<Company>> GetAllAsync(QueryObjectForCompany query)
         {
-            var Companies = _context.Companies.Include(objOONEI => objOONEI.ObjectOfNEI).Include(u => u.Users).AsQueryable();
+            //var Companies = _context.Companies.Include(objOONEI => objOONEI.ObjectOfNEI).Include(u => u.Users).AsQueryable();
+            var Companies = _context.Companies.AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(query.FullName))
             {
@@ -85,7 +86,8 @@ namespace pimonova_WebAPI.Repositories
 
         public async Task<Company?> GetByIdAsync(int Id)
         {
-            return await _context.Companies.Include(objOONEI => objOONEI.ObjectOfNEI).Include(u => u.Users).FirstOrDefaultAsync(i => i.CompanyID == Id);
+            //return await _context.Companies.Include(objOONEI => objOONEI.ObjectOfNEI).Include(u => u.Users).FirstOrDefaultAsync(i => i.CompanyID == Id);
+            return await _context.Companies.FirstOrDefaultAsync(i => i.CompanyID == Id);
         }
 
         public async Task<Company?> UpdateAsync(int Id, UpdateCompanyRequestDTO companyRequestDTO)

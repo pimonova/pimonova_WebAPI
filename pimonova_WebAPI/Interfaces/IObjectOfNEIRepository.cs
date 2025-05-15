@@ -10,5 +10,6 @@ namespace pimonova_WebAPI.Interfaces
         Task<ObjectOfNEI> CreateAsync(ObjectOfNEI ObjectOfNEIModel);
         Task<ObjectOfNEI> UpdateAsync(int Id, ObjectOfNEI ObjectOfNEIModel);
         Task<ObjectOfNEI?> DeleteAsync(int Id);
+        Task<bool> ObjectOfNEIExists(int Id);
     }
 }

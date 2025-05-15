@@ -41,8 +41,8 @@ namespace pimonova_WebAPI.DTOs.Company
         [Required]
         public string LineOfWork { get; set; } = string.Empty;
 
-        public List<ObjectOfNEIDTO> ObjectsOfNEI { get; set; }
+        //public List<ObjectOfNEIDTO> ObjectsOfNEI { get; set; }
 
-        public List<UserDTO> Users { get; set; }
+        //public List<UserDTO> Users { get; set; }
     }
 }

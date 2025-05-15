@@ -32,9 +32,13 @@ namespace pimonova_WebAPI.Controllers
             }
 
             var Companies = await _companyRepo.GetAllAsync(Query);
-            var CompanyDTO = Companies.Select(s => s.ToCompanyDTO());
+            //var CompanyDTO = Companies.Select(s => s.ToCompanyDTO());
 
-            return Ok(Companies);
+            //return Ok(Companies);
+
+            var CompanyDTOs = Companies.Select(s => s.ToCompanyDTO());
+
+            return Ok(CompanyDTOs);
         }
 
         [HttpGet("{Id:int}")]

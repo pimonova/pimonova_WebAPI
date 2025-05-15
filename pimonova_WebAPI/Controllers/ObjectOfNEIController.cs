@@ -32,9 +32,13 @@ namespace pimonova_WebAPI.Controllers
             }
 
             var ObjectsOfNEI = await _objectOfNEIRepo.GetAllAsync(Query);
-            var ObjectsOfNEIDTO = ObjectsOfNEI.Select(s => s.ToObjectOfNEIDTO());
+            //var ObjectsOfNEIDTO = ObjectsOfNEI.Select(s => s.ToObjectOfNEIDTO());
 
-            return Ok(ObjectsOfNEI);
+            //return Ok(ObjectsOfNEI);
+
+            var ObjectsOfNEIDTOs = ObjectsOfNEI.Select(s => s.ToObjectOfNEIDTO());
+
+            return Ok(ObjectsOfNEIDTOs);
         }
 
         [HttpGet("{Id:int}")]
@@ -71,7 +75,7 @@ namespace pimonova_WebAPI.Controllers
             var ObjectOfNEIModel = ObjectOfNEIRequestDTO.ToObjectOfNEIFromCreateDTO(CompanyId);
             await _objectOfNEIRepo.CreateAsync(ObjectOfNEIModel);
 
-            return CreatedAtAction(nameof(GetById), new {id = ObjectOfNEIModel.CompanyID}, ObjectOfNEIModel.ToObjectOfNEIDTO());
+            return CreatedAtAction(nameof(GetById), new {Id = ObjectOfNEIModel.CompanyID}, ObjectOfNEIModel.ToObjectOfNEIDTO());
         }
 
         [HttpPut]

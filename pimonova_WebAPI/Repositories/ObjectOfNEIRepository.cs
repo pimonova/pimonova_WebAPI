@@ -70,6 +70,11 @@ namespace pimonova_WebAPI.Repositories
             return await _context.ObjectsOfNEI.FindAsync(Id);
         }
 
+        public Task<bool> ObjectOfNEIExists(int Id)
+        {
+            return _context.ObjectsOfNEI.AnyAsync(x => x.ObjectOfNEIID == Id);
+        }
+
         public async Task<ObjectOfNEI> UpdateAsync(int Id, ObjectOfNEI ObjectOfNEIModel)
         {
             var ExistingObjectOfNEI = await _context.ObjectsOfNEI.FindAsync(Id);
