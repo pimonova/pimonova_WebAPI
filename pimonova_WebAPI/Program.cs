@@ -71,6 +71,10 @@ builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IObjectOfNEIRepository, ObjectOfNEIRepository>();
 builder.Services.AddScoped<IWorkshopRepository, WorkshopRepository>();
 builder.Services.AddScoped<ISectorRepository, SectorRepository>();
+builder.Services.AddScoped<IGasCleanerRepository, GasCleanerRepository>();
+builder.Services.AddScoped<IMobileIZAVRepository, MobileIZAVRepository>();
+builder.Services.AddScoped<ISourceOfPollutantsRepository, SourceOfPollutantsRepository>();
+builder.Services.AddScoped<IStationaryIZAVRepository, StationaryIZAVRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 var app = builder.Build();

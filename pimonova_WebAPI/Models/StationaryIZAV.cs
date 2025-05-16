@@ -6,6 +6,7 @@ namespace pimonova_WebAPI.Models
     [Table("StationaryIZAVs")]
     public class StationaryIZAV
     {
+        [Key]
         public int StationaryIZAVID { get; set; }
 
         public int? SectorID { get; set; }
@@ -31,13 +32,13 @@ namespace pimonova_WebAPI.Models
 
         public short ModeNumber { get; set; }
 
-        public float OutputSpeedOfGIM { get; set; }
+        public float OutputSpeedOfGAM { get; set; } // Скорость выхода ГВС
 
-        public float VolumeOfGIM { get; set; }
+        public float VolumeOfGAM { get; set; } // Объем (расход) ГВС
 
-        public short TemperatureOfGIM { get; set; }
+        public short TemperatureOfGAM { get; set; } 
 
-        public float DensityOfGIM { get; set; }
+        public float DensityOfGAM { get; set; } // Полность ГВС
 
         public virtual ICollection<GasCleaner> GasCleaners { get; set; } = new List<GasCleaner>();
 

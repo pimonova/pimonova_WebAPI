@@ -24,7 +24,7 @@ namespace pimonova_WebAPI.Mappers
             {
                 NumberInCompany = SectorDTO.NumberInCompany,
                 Name = SectorDTO.Name,
-                WorkshopID = WorkshopId
+                WorkshopID = WorkshopId,
             };
         }
 

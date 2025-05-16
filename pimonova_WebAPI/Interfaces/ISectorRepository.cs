@@ -9,5 +9,6 @@ namespace pimonova_WebAPI.Interfaces
         Task<Sector> CreateAsync(Sector SectorModel);
         Task<Sector> UpdateAsync(int Id, Sector SectorModel);
         Task<Sector?> DeleteAsync(int Id);
+        Task<bool> SectorExists(int Id);
     }
 }

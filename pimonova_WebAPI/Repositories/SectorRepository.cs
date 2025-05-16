@@ -46,6 +46,11 @@ namespace pimonova_WebAPI.Repositories
             return await _context.Sectors.FindAsync(Id);
         }
 
+        public Task<bool> SectorExists(int Id)
+        {
+            return _context.Sectors.AnyAsync(x => x.SectorID == Id);
+        }
+
         public async Task<Sector> UpdateAsync(int Id, Sector SectorModel)
         {
             var ExistingSector = await _context.Sectors.FindAsync(Id);

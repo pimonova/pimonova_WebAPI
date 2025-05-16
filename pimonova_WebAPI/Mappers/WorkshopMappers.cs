@@ -23,7 +23,7 @@ namespace pimonova_WebAPI.Mappers
             {
                 NumberInCompany = WorkshopDTO.NumberInCompany,
                 Name = WorkshopDTO.Name,
-                ObjectOfNEIID = ObjectOfNEIId
+                ObjectOfNEIID = ObjectOfNEIId,
             };
         }
 
