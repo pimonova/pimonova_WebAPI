@@ -9,5 +9,6 @@ namespace pimonova_WebAPI.Interfaces
         Task<StationaryIZAV> CreateAsync(StationaryIZAV StationaryIZAVModel);
         Task<StationaryIZAV> UpdateAsync(int Id, StationaryIZAV StationaryIZAVModel);
         Task<StationaryIZAV?> DeleteAsync(int Id);
+        Task<bool> StationaryIZAVExists(int Id);
     }
 }

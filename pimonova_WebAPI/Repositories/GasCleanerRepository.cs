@@ -20,7 +20,7 @@ namespace pimonova_WebAPI.Repositories
 
         public async Task<GasCleaner?> DeleteAsync(int Id)
         {
-            var GasCleanerModel = await _context.GasCleaners.FirstOrDefaultAsync(x => x.SectorID == Id);
+            var GasCleanerModel = await _context.GasCleaners.FirstOrDefaultAsync(x => x.GasCleanerID == Id);
 
             if (GasCleanerModel == null)
             {

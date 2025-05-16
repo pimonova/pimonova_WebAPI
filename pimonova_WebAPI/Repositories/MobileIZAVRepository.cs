@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc.ApplicationModels;
 using Microsoft.EntityFrameworkCore;
 using pimonova_WebAPI.Data;
+using pimonova_WebAPI.DTOs.MobileIZAV;
 using pimonova_WebAPI.Interfaces;
 using pimonova_WebAPI.Models;
+using System.Xml.Linq;
 
 namespace pimonova_WebAPI.Repositories
 {
@@ -24,7 +26,7 @@ namespace pimonova_WebAPI.Repositories
 
         public async Task<MobileIZAV?> DeleteAsync(int Id)
         {
-            var MobileIZAVModel = await _context.MobileIZAVs.FirstOrDefaultAsync(x => x.SectorID == Id);
+            var MobileIZAVModel = await _context.MobileIZAVs.FirstOrDefaultAsync(x => x.MobileIZAVID == Id);
 
             if (MobileIZAVModel == null)
             {
@@ -49,7 +51,24 @@ namespace pimonova_WebAPI.Repositories
 
         public async Task<MobileIZAV> UpdateAsync(int Id, MobileIZAV MobileIZAVModel)
         {
-            throw new NotImplementedException();
+            var ExistingMobileIZAV = await _context.MobileIZAVs.FindAsync(Id);
+
+            if (ExistingMobileIZAV == null)
+            {
+                return null;
+            }
+
+            ExistingMobileIZAV.Name = MobileIZAVModel.Name;
+            ExistingMobileIZAV.NumberInCompany = MobileIZAVModel.NumberInCompany;
+            ExistingMobileIZAV.AmountOfIZAVWithOneNumber = MobileIZAVModel.AmountOfIZAVWithOneNumber;
+            ExistingMobileIZAV.Speed = MobileIZAVModel.Speed;
+            ExistingMobileIZAV.Fuel = MobileIZAVModel.Fuel;
+            ExistingMobileIZAV.WorkingHoursPerSeason = MobileIZAVModel.WorkingHoursPerSeason;
+            ExistingMobileIZAV.WorkingHoursPerYear = MobileIZAVModel.WorkingHoursPerYear;
+
+            await _context.SaveChangesAsync();
+
+            return ExistingMobileIZAV;
         }
     }
 }

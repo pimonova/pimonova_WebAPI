@@ -63,7 +63,7 @@ namespace pimonova_WebAPI.Controllers
 
             if (!await _objectOfNEIRepo.ObjectOfNEIExists(ObjectOfNEIId))
             {
-                return BadRequest("ObjectOfNEI does not exist");
+                return BadRequest("Object of negative environmental impact does not exist");
             }
 
             var WorkshopModel = WorkshopRequestDTO.ToWorkshopFromCreateDTO(ObjectOfNEIId);
