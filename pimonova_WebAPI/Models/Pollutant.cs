@@ -8,7 +8,9 @@ namespace pimonova_WebAPI.Models
     public class Pollutant
     {
         [Key]
-        public int Code { get; set; }
+        public int PollutantID { get; set; }
+
+        public string Code { get; set; } = string.Empty;
 
         public string Name { get; set; } = string.Empty;
 
@@ -20,7 +22,7 @@ namespace pimonova_WebAPI.Models
         
         public virtual ICollection<StationaryIZAV_Pollutant> StationaryIZAVs_Pollutants { get; set; } = new List<StationaryIZAV_Pollutant>();
         
-        public virtual ICollection<InstrumentalEmissionMeasuringOfSIZAV_Pollutant> InstrumentalEmissionMeasuringsOfSIZAV_Pollutants { get; set; } = new List<InstrumentalEmissionMeasuringOfSIZAV_Pollutant>();
+        public virtual ICollection<InstrumentalEmissionMeasuring_Pollutant> InstrumentalEmissionMeasurings_Pollutants { get; set; } = new List<InstrumentalEmissionMeasuring_Pollutant>();
 
     }
 }

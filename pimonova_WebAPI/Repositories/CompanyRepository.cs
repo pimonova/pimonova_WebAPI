@@ -90,7 +90,7 @@ namespace pimonova_WebAPI.Repositories
             return await _context.Companies.FirstOrDefaultAsync(i => i.CompanyID == Id);
         }
 
-        public async Task<Company?> UpdateAsync(int Id, UpdateCompanyRequestDTO companyRequestDTO)
+        public async Task<Company?> UpdateAsync(int Id, UpdateCompanyRequestDTO CompanyRequestDTO)
         {
             var ExistingCompany = await _context.Companies.FirstOrDefaultAsync(x => x.CompanyID == Id);
 
@@ -99,16 +99,16 @@ namespace pimonova_WebAPI.Repositories
                 return null;
             }
 
-            ExistingCompany.FullName = companyRequestDTO.FullName;
-            ExistingCompany.ShortName = companyRequestDTO.ShortName;
-            ExistingCompany.RegAddress = companyRequestDTO.RegAddress;
-            ExistingCompany.CurrAddress = companyRequestDTO.CurrAddress;
-            ExistingCompany.PhoneNumber = companyRequestDTO.PhoneNumber;
-            ExistingCompany.INN = companyRequestDTO.INN;
-            ExistingCompany.KPP = companyRequestDTO.KPP;
-            ExistingCompany.OGRN = companyRequestDTO.OGRN;
-            ExistingCompany.Director = companyRequestDTO.Director;
-            ExistingCompany.LineOfWork = companyRequestDTO.LineOfWork;
+            ExistingCompany.FullName = CompanyRequestDTO.FullName;
+            ExistingCompany.ShortName = CompanyRequestDTO.ShortName;
+            ExistingCompany.RegAddress = CompanyRequestDTO.RegAddress;
+            ExistingCompany.CurrAddress = CompanyRequestDTO.CurrAddress;
+            ExistingCompany.PhoneNumber = CompanyRequestDTO.PhoneNumber;
+            ExistingCompany.INN = CompanyRequestDTO.INN;
+            ExistingCompany.KPP = CompanyRequestDTO.KPP;
+            ExistingCompany.OGRN = CompanyRequestDTO.OGRN;
+            ExistingCompany.Director = CompanyRequestDTO.Director;
+            ExistingCompany.LineOfWork = CompanyRequestDTO.LineOfWork;
 
             await _context.SaveChangesAsync();
 

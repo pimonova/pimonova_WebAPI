@@ -9,7 +9,7 @@ namespace pimonova_WebAPI.Interfaces
         Task<List<Company>> GetAllAsync(QueryObjectForCompany query);
         Task<Company?> GetByIdAsync(int Id);
         Task<Company> CreateAsync(Company CompanyModel);
-        Task<Company?> UpdateAsync(int Id, UpdateCompanyRequestDTO companyRequestDTO);
+        Task<Company?> UpdateAsync(int Id, UpdateCompanyRequestDTO CompanyRequestDTO);
         Task<Company?> DeleteAsync(int Id);
         Task<bool> CompanyExists(int Id);
         Task<List<CompanyWithCountedObjectsOfNEIDTO>> GetCountObjectsOfNEIAsync();

@@ -75,7 +75,9 @@ builder.Services.AddScoped<IGasCleanerRepository, GasCleanerRepository>();
 builder.Services.AddScoped<IMobileIZAVRepository, MobileIZAVRepository>();
 builder.Services.AddScoped<ISourceOfPollutantsRepository, SourceOfPollutantsRepository>();
 builder.Services.AddScoped<IStationaryIZAVRepository, StationaryIZAVRepository>();
-builder.Services.AddScoped<IInstrumentalEmissionMeasuringOfSIZAVRepository, InstrumentalEmissionMeasuringOfSIZAVRepository>();
+builder.Services.AddScoped<IInstrumentalEmissionMeasuringRepository, InstrumentalEmissionMeasuringRepository>();
+builder.Services.AddScoped<IModeOfIZAVWithNonStationaryEmissionsRepository, ModeOfIZAVWithNonStationaryEmissionsRepository>();
+builder.Services.AddScoped<IPollutantRepository, PollutantRepository>();
 builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 
 var app = builder.Build();

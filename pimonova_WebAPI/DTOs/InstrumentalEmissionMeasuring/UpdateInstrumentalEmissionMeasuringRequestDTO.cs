@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace pimonova_WebAPI.DTOs.InstrumentalEmissionMeasuringOfSIZAV
+namespace pimonova_WebAPI.DTOs.InstrumentalEmissionMeasuring
 {
-    public class CreateInstrumentalEmissionMeasuringOfSIZAVRequestDTO
+    public class UpdateInstrumentalEmissionMeasuringRequestDTO
     {
         [Required]
         public float DiameterOfWasteGas { get; set; }

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using pimonova_WebAPI.Data;
@@ -11,9 +12,11 @@ using pimonova_WebAPI.Data;
 namespace pimonova_WebAPI.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250517105756_TablesRename")]
+    partial class TablesRename
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -161,7 +164,7 @@ namespace pimonova_WebAPI.Migrations
                         .HasColumnType("integer")
                         .HasColumnOrder(0);
 
-                    b.Property<int>("PollutantID")
+                    b.Property<int>("PollutantCode")
                         .HasColumnType("integer")
                         .HasColumnOrder(1);
 
@@ -181,9 +184,9 @@ namespace pimonova_WebAPI.Migrations
                     b.Property<float>("PollutantEmission")
                         .HasColumnType("real");
 
-                    b.HasKey("InstrumentalEmissionMeasuringID", "PollutantID");
+                    b.HasKey("InstrumentalEmissionMeasuringID", "PollutantCode");
 
-                    b.HasIndex("PollutantID");
+                    b.HasIndex("PollutantCode");
 
                     b.ToTable("InstrumentalEmissionMeasurings_Pollutants");
                 });
@@ -235,7 +238,7 @@ namespace pimonova_WebAPI.Migrations
                         .HasColumnType("integer")
                         .HasColumnOrder(0);
 
-                    b.Property<int>("PollutantID")
+                    b.Property<int>("PollutantCode")
                         .HasColumnType("integer")
                         .HasColumnOrder(1);
 
@@ -249,9 +252,9 @@ namespace pimonova_WebAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("MobileIZAVID", "PollutantID");
+                    b.HasKey("MobileIZAVID", "PollutantCode");
 
-                    b.HasIndex("PollutantID");
+                    b.HasIndex("PollutantCode");
 
                     b.ToTable("MobileIZAVs_Pollutants");
                 });
@@ -311,21 +314,17 @@ namespace pimonova_WebAPI.Migrations
 
             modelBuilder.Entity("pimonova_WebAPI.Models.Pollutant", b =>
                 {
-                    b.Property<int>("PollutantID")
+                    b.Property<int>("Code")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("PollutantID"));
-
-                    b.Property<string>("Code")
-                        .IsRequired()
-                        .HasColumnType("text");
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Code"));
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.HasKey("PollutantID");
+                    b.HasKey("Code");
 
                     b.ToTable("Pollutants");
                 });
@@ -366,13 +365,13 @@ namespace pimonova_WebAPI.Migrations
                         .HasColumnType("integer")
                         .HasColumnOrder(0);
 
-                    b.Property<int>("PollutantID")
+                    b.Property<int>("PollutantCode")
                         .HasColumnType("integer")
                         .HasColumnOrder(1);
 
-                    b.HasKey("ResultOfGasCleanersInspectionID", "PollutantID");
+                    b.HasKey("ResultOfGasCleanersInspectionID", "PollutantCode");
 
-                    b.HasIndex("PollutantID");
+                    b.HasIndex("PollutantCode");
 
                     b.ToTable("ResultsOfGasCleanersInspection_Pollutants");
                 });
@@ -460,7 +459,7 @@ namespace pimonova_WebAPI.Migrations
                         .HasColumnType("integer")
                         .HasColumnOrder(0);
 
-                    b.Property<int>("PollutantID")
+                    b.Property<int>("PollutantCode")
                         .HasColumnType("integer")
                         .HasColumnOrder(1);
 
@@ -473,9 +472,9 @@ namespace pimonova_WebAPI.Migrations
                     b.Property<float>("TotalPollutantAmountTonsPerYear")
                         .HasColumnType("real");
 
-                    b.HasKey("SourceOfPollutantsID", "PollutantID");
+                    b.HasKey("SourceOfPollutantsID", "PollutantCode");
 
-                    b.HasIndex("PollutantID");
+                    b.HasIndex("PollutantCode");
 
                     b.ToTable("SourcesOfPollutants_Pollutants");
                 });
@@ -548,7 +547,7 @@ namespace pimonova_WebAPI.Migrations
                         .HasColumnType("integer")
                         .HasColumnOrder(0);
 
-                    b.Property<int>("PollutantID")
+                    b.Property<int>("PollutantCode")
                         .HasColumnType("integer")
                         .HasColumnOrder(1);
 
@@ -564,9 +563,9 @@ namespace pimonova_WebAPI.Migrations
                     b.Property<float>("TotalPollutantEmissionTonsPerPeriod")
                         .HasColumnType("real");
 
-                    b.HasKey("StationaryIZAVID", "PollutantID");
+                    b.HasKey("StationaryIZAVID", "PollutantCode");
 
-                    b.HasIndex("PollutantID");
+                    b.HasIndex("PollutantCode");
 
                     b.ToTable("StationaryIZAVs_Pollutants");
                 });
@@ -675,7 +674,7 @@ namespace pimonova_WebAPI.Migrations
 
                     b.HasOne("pimonova_WebAPI.Models.Pollutant", "Pollutant")
                         .WithMany("InstrumentalEmissionMeasurings_Pollutants")
-                        .HasForeignKey("PollutantID")
+                        .HasForeignKey("PollutantCode")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -703,7 +702,7 @@ namespace pimonova_WebAPI.Migrations
 
                     b.HasOne("pimonova_WebAPI.Models.Pollutant", "Pollutant")
                         .WithMany("MobileIZAVs_Pollutants")
-                        .HasForeignKey("PollutantID")
+                        .HasForeignKey("PollutantCode")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -734,7 +733,7 @@ namespace pimonova_WebAPI.Migrations
                 {
                     b.HasOne("pimonova_WebAPI.Models.Pollutant", "Pollutant")
                         .WithMany("ResultsOfGasCleanersInspection_Pollutants")
-                        .HasForeignKey("PollutantID")
+                        .HasForeignKey("PollutantCode")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -789,7 +788,7 @@ namespace pimonova_WebAPI.Migrations
                 {
                     b.HasOne("pimonova_WebAPI.Models.Pollutant", "Pollutant")
                         .WithMany("SourcesOfPollutants_Pollutants")
-                        .HasForeignKey("PollutantID")
+                        .HasForeignKey("PollutantCode")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
@@ -817,7 +816,7 @@ namespace pimonova_WebAPI.Migrations
                 {
                     b.HasOne("pimonova_WebAPI.Models.Pollutant", "Pollutant")
                         .WithMany("StationaryIZAVs_Pollutants")
-                        .HasForeignKey("PollutantID")
+                        .HasForeignKey("PollutantCode")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

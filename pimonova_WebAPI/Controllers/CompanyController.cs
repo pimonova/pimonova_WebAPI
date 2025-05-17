@@ -15,12 +15,18 @@ namespace pimonova_WebAPI.Controllers
     [ApiController]
     public class CompanyController : ControllerBase
     {
-        private readonly ApplicationDbContext _context;
+        //private readonly ApplicationDbContext _context;
+        //private readonly ICompanyRepository _companyRepo;
+        //public CompanyController(ApplicationDbContext context, ICompanyRepository CompanyRepo)
+        //{
+        //    _companyRepo = CompanyRepo;
+        //    _context = context;
+        //}
+
         private readonly ICompanyRepository _companyRepo;
-        public CompanyController(ApplicationDbContext context, ICompanyRepository CompanyRepo)
+        public CompanyController(ICompanyRepository CompanyRepo)
         {
             _companyRepo = CompanyRepo;
-            _context = context;
         }
 
         [HttpGet]

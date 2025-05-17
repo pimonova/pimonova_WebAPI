@@ -42,7 +42,7 @@ namespace pimonova_WebAPI.Models
 
         public virtual ICollection<GasCleaner> GasCleaners { get; set; } = new List<GasCleaner>();
 
-        public virtual ICollection<InstrumentalEmissionMeasuringOfSIZAV> InstrumentalEmissionMeasuringsOfSIZAV { get; set; } = new List<InstrumentalEmissionMeasuringOfSIZAV>();
+        public virtual ICollection<InstrumentalEmissionMeasuring> InstrumentalEmissionMeasuringsOfSIZAV { get; set; } = new List<InstrumentalEmissionMeasuring>();
 
         public virtual ICollection<SourceOfPollutants> SourcesOfPollutants { get; set; } = new List<SourceOfPollutants>();
 

@@ -1,36 +1,36 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
-namespace pimonova_WebAPI.DTOs.InstrumentalEmissionMeasuringOfSIZAV
+namespace pimonova_WebAPI.Models
 {
-    public class InstrumentalEmissionMeasuringOfSIZAVDTO
+    // Результаты инструментального определения показателей выбросов
+    [Table("InstrumentalEmissionMeasurings")]
+    public class InstrumentalEmissionMeasuring
     {
         [Key]
-        [Required]
         public int ResultID { get; set; }
 
-        [Required]
-        public int? StationaryIZAVID { get; set; }
+        [Column(TypeName = "date")]
+        public DateTime Date { get; set; }
 
-        [Required]
+        public int? StationaryIZAVID { get; set; }
+        public virtual StationaryIZAV? StationaryIZAV { get; set; }
+
         public float DiameterOfWasteGas { get; set; }
 
-        [Required]
         public float SpeedOfWasteGas { get; set; }
 
-        [Required]
         public float VolumetricFlowRateOfWasteGasNC { get; set; }
 
-        [Required]
         public float TrueVolumetricFlowRateOfWasteGas { get; set; }
 
-        [Required]
         public short TemperatureOfWasteGas { get; set; }
 
-        [Required]
         public short PressureOfWasteGas { get; set; }
 
-        [Required]
         public float WaterVaporConcentration { get; set; }
+
+        public virtual ICollection<InstrumentalEmissionMeasuring_Pollutant> InstrumentalEmissionMeasurings_Pollutants { get; set; } = new List<InstrumentalEmissionMeasuring_Pollutant>();
+
     }
 }

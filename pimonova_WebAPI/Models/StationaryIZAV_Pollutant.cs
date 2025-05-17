@@ -13,7 +13,7 @@ namespace pimonova_WebAPI.Models
 
         [Key]
         [Column(Order = 1)]
-        public int? PollutantCode { get; set; }
+        public int? PollutantID { get; set; }
         public virtual Pollutant? Pollutant { get; set; }
 
         public float PollutantConcentration { get; set; }

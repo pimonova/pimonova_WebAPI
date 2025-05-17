@@ -20,8 +20,8 @@ namespace pimonova_WebAPI.Data
         public virtual DbSet<StationaryIZAV> StationaryIZAVs { get; set; }
         public virtual DbSet<StationaryIZAV_Pollutant> StationaryIZAVs_Pollutants { get; set; }
         public virtual DbSet<ModeOfIZAVWithNonStationaryEmissions> ModesOfIZAVWithNonStationaryEmissions { get; set; }
-        public virtual DbSet<InstrumentalEmissionMeasuringOfSIZAV> InstrumentalEmissionMeasuringsOfSIZAV { get; set; }
-        public virtual DbSet<InstrumentalEmissionMeasuringOfSIZAV_Pollutant> InstrumentalEmissionMeasuringsOfSIZAV_Pollutants { get; set; }
+        public virtual DbSet<InstrumentalEmissionMeasuring> InstrumentalEmissionMeasurings { get; set; }
+        public virtual DbSet<InstrumentalEmissionMeasuring_Pollutant> InstrumentalEmissionMeasurings_Pollutants { get; set; }
         public virtual DbSet<MobileIZAV> MobileIZAVs { get; set; }
         public virtual DbSet<MobileIZAV_Pollutant> MobileIZAVs_Pollutants { get; set; }
         public virtual DbSet<ResultOfGasCleanersInspection> ResultsOfGasCleanersInspection { get; set; }
@@ -37,7 +37,7 @@ namespace pimonova_WebAPI.Data
                 .IsUnique(); // Указывает, что Username должен быть уникальным
 
             modelBuilder.Entity<SourceOfPollutants_Pollutant>()
-                .HasKey(x => new { x.SourceOfPollutantsID, x.PollutantCode });
+                .HasKey(x => new { x.SourceOfPollutantsID, x.PollutantID });
 
             modelBuilder.Entity<SourceOfPollutants_Pollutant>()
                 .HasOne(x => x.SourceOfPollutants)
@@ -48,12 +48,12 @@ namespace pimonova_WebAPI.Data
             modelBuilder.Entity<SourceOfPollutants_Pollutant>()
                 .HasOne(x => x.Pollutant)
                 .WithMany(p => p.SourcesOfPollutants_Pollutants)
-                .HasForeignKey(x => x.PollutantCode)
+                .HasForeignKey(x => x.PollutantID)
                 .OnDelete(DeleteBehavior.NoAction);
 
 
             modelBuilder.Entity<StationaryIZAV_Pollutant>()
-                .HasKey(x => new { x.StationaryIZAVID, x.PollutantCode });
+                .HasKey(x => new { x.StationaryIZAVID, x.PollutantID });
 
             modelBuilder.Entity<StationaryIZAV_Pollutant>()
                 .HasOne(x => x.StationaryIZAV)
@@ -64,28 +64,28 @@ namespace pimonova_WebAPI.Data
             modelBuilder.Entity<StationaryIZAV_Pollutant>()
                 .HasOne(x => x.Pollutant)
                 .WithMany(p => p.StationaryIZAVs_Pollutants)
-                .HasForeignKey(x => x.PollutantCode)
+                .HasForeignKey(x => x.PollutantID)
                 .OnDelete(DeleteBehavior.NoAction);
 
 
-            modelBuilder.Entity<InstrumentalEmissionMeasuringOfSIZAV_Pollutant>()
-                .HasKey(x => new { x.InstrumentalEmissionMeasuringOfSIZAVID, x.PollutantCode });
+            modelBuilder.Entity<InstrumentalEmissionMeasuring_Pollutant>()
+                .HasKey(x => new { x.InstrumentalEmissionMeasuringID, x.PollutantID });
 
-            modelBuilder.Entity<InstrumentalEmissionMeasuringOfSIZAV_Pollutant>()
-                .HasOne(x => x.InstrumentalEmissionMeasuringOfSIZAV)
-                .WithMany(s => s.InstrumentalEmissionMeasuringsOfSIZAV_Pollutants)
-                .HasForeignKey(x => x.InstrumentalEmissionMeasuringOfSIZAVID)
+            modelBuilder.Entity<InstrumentalEmissionMeasuring_Pollutant>()
+                .HasOne(x => x.InstrumentalEmissionMeasuring)
+                .WithMany(s => s.InstrumentalEmissionMeasurings_Pollutants)
+                .HasForeignKey(x => x.InstrumentalEmissionMeasuringID)
                 .OnDelete(DeleteBehavior.NoAction);
 
-            modelBuilder.Entity<InstrumentalEmissionMeasuringOfSIZAV_Pollutant>()
+            modelBuilder.Entity<InstrumentalEmissionMeasuring_Pollutant>()
                 .HasOne(x => x.Pollutant)
-                .WithMany(p => p.InstrumentalEmissionMeasuringsOfSIZAV_Pollutants)
-                .HasForeignKey(x => x.PollutantCode)
+                .WithMany(p => p.InstrumentalEmissionMeasurings_Pollutants)
+                .HasForeignKey(x => x.PollutantID)
                 .OnDelete(DeleteBehavior.NoAction);
 
 
             modelBuilder.Entity<MobileIZAV_Pollutant>()
-                .HasKey(x => new { x.MobileIZAVID, x.PollutantCode });
+                .HasKey(x => new { x.MobileIZAVID, x.PollutantID });
 
             modelBuilder.Entity<MobileIZAV_Pollutant>()
                 .HasOne(x => x.MobileIZAV)
@@ -96,12 +96,12 @@ namespace pimonova_WebAPI.Data
             modelBuilder.Entity<MobileIZAV_Pollutant>()
                 .HasOne(x => x.Pollutant)
                 .WithMany(p => p.MobileIZAVs_Pollutants)
-                .HasForeignKey(x => x.PollutantCode)
+                .HasForeignKey(x => x.PollutantID)
                 .OnDelete(DeleteBehavior.NoAction);
 
 
             modelBuilder.Entity<ResultOfGasCleanersInspection_Pollutant>()
-                .HasKey(x => new { x.ResultOfGasCleanersInspectionID, x.PollutantCode });
+                .HasKey(x => new { x.ResultOfGasCleanersInspectionID, x.PollutantID });
 
             modelBuilder.Entity<ResultOfGasCleanersInspection_Pollutant>()
                 .HasOne(x => x.ResultOfGasCleanersInspection)
@@ -112,7 +112,7 @@ namespace pimonova_WebAPI.Data
             modelBuilder.Entity<ResultOfGasCleanersInspection_Pollutant>()
                 .HasOne(x => x.Pollutant)
                 .WithMany(p => p.ResultsOfGasCleanersInspection_Pollutants)
-                .HasForeignKey(x => x.PollutantCode)
+                .HasForeignKey(x => x.PollutantID)
                 .OnDelete(DeleteBehavior.NoAction);
         }
     }

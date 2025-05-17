@@ -3,17 +3,17 @@ using System.ComponentModel.DataAnnotations;
 
 namespace pimonova_WebAPI.Models
 {
-    [Table("InstrumentalEmissionMeasuringsOfSIZAV_Pollutants")]
-    public class InstrumentalEmissionMeasuringOfSIZAV_Pollutant
+    [Table("InstrumentalEmissionMeasurings_Pollutants")]
+    public class InstrumentalEmissionMeasuring_Pollutant
     {
         [Key]
         [Column(Order = 0)]
-        public int? InstrumentalEmissionMeasuringOfSIZAVID { get; set; }
-        public virtual InstrumentalEmissionMeasuringOfSIZAV? InstrumentalEmissionMeasuringOfSIZAV { get; set; }
+        public int? InstrumentalEmissionMeasuringID { get; set; }
+        public virtual InstrumentalEmissionMeasuring? InstrumentalEmissionMeasuring { get; set; }
 
         [Key]
         [Column(Order = 1)]
-        public int? PollutantCode { get; set; }
+        public int? PollutantID { get; set; }
         public virtual Pollutant? Pollutant { get; set; }
 
         public float MassConcentration { get; set; }
