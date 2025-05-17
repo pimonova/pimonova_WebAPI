@@ -67,7 +67,7 @@ namespace pimonova_WebAPI.Controllers
             var StationaryIZAVModel = StationaryIZAVRequestDTO.ToStationaryIZAVFromCreateDTO(SectorId);
             await _stationaryIZAVRepo.CreateAsync(StationaryIZAVModel);
 
-            return CreatedAtAction(nameof(GetById), new { Id = StationaryIZAVModel.SectorID }, StationaryIZAVModel.ToStationaryIZAVDTO());
+            return CreatedAtAction(nameof(GetById), new { Id = StationaryIZAVModel.StationaryIZAVID }, StationaryIZAVModel.ToStationaryIZAVDTO());
         }
 
         [HttpPut]

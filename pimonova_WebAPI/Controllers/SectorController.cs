@@ -71,7 +71,7 @@ namespace pimonova_WebAPI.Controllers
             var SectorModel = SectorRequestDTO.ToSectorFromCreateDTO(WorkshopId);
             await _sectorRepo.CreateAsync(SectorModel);
 
-            return CreatedAtAction(nameof(GetById), new {Id = SectorModel.WorkshopID}, SectorModel.ToSectorDTO());
+            return CreatedAtAction(nameof(GetById), new {Id = SectorModel.SectorID}, SectorModel.ToSectorDTO());
         }
 
         [HttpPut]

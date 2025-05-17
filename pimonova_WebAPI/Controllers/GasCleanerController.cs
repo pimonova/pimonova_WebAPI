@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using pimonova_WebAPI.DTOs.GasCleaner;
+using pimonova_WebAPI.DTOs.MobileIZAV;
 using pimonova_WebAPI.DTOs.Sector;
 using pimonova_WebAPI.Interfaces;
 using pimonova_WebAPI.Mappers;
+using pimonova_WebAPI.Models;
 
 namespace pimonova_WebAPI.Controllers
 {
@@ -11,10 +14,12 @@ namespace pimonova_WebAPI.Controllers
     {
         private readonly IGasCleanerRepository _gasCleanerRepo;
         private readonly ISectorRepository _sectorRepo;
-        public GasCleanerController(IGasCleanerRepository GasCleanerRepo, ISectorRepository SectorRepo)
+        private readonly IStationaryIZAVRepository _stationaryIZAVRepo;
+        public GasCleanerController(IGasCleanerRepository GasCleanerRepo, IStationaryIZAVRepository StationaryIZAVRepo, ISectorRepository SectorRepo)
         {
             _gasCleanerRepo = GasCleanerRepo;
             _sectorRepo = SectorRepo;
+            _stationaryIZAVRepo = StationaryIZAVRepo;
         }
 
         [HttpGet]
@@ -50,24 +55,59 @@ namespace pimonova_WebAPI.Controllers
             return Ok(GasCleaner.ToGasCleanerDTO());
         }
 
-        //[HttpPost("{SectorId:int}")]
-        //public async Task<IActionResult> Create([FromRoute] int SectorId, CreateGasCleanerRequestDTO GasCleanerRequestDTO)
-        //{
-        //    if (!ModelState.IsValid)
-        //    {
-        //        return BadRequest();
-        //    }
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateGasCleanerRequestDTO GasCleanerRequestDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
 
-        //    if (!await _sectorRepo.SectorExists(SectorId))
-        //    {
-        //        return BadRequest("Sector does not exist");
-        //    }
+            if (GasCleanerRequestDTO.StationaryIZAVToOut == null || !await _stationaryIZAVRepo.StationaryIZAVExists(GasCleanerRequestDTO.StationaryIZAVToOut.Value))
+            {
+                return NotFound("Stationary IZAV is not found");
+            }
 
-        //    var GasCleanerModel = GasCleanerRequestDTO.ToGasCleanerFromCreateDTO(SectorId);
-        //    await _gasCleanerRepo.CreateAsync(GasCleanerModel);
+            if (GasCleanerRequestDTO.SectorID == null || !await _sectorRepo.SectorExists(GasCleanerRequestDTO.SectorID.Value))
+            {
+                return BadRequest("Sector is not found");
+            }
 
-        //    return CreatedAtAction(nameof(GetById), new { Id = GasCleanerModel.SectorID }, GasCleanerModel.ToGasCleanerDTO());
-        //}
+            var GasCleanerModel = GasCleanerRequestDTO.ToGasCleanerFromCreateDTO();
+
+            await _gasCleanerRepo.CreateAsync(GasCleanerModel);
+
+            return CreatedAtAction(nameof(GetById), new { Id = GasCleanerModel.GasCleanerID }, GasCleanerModel.ToGasCleanerDTO());
+        }
+
+        [HttpPut("{Id:int}")]
+        public async Task<IActionResult> Update([FromRoute] int Id, [FromBody] UpdateGasCleanerRequestDTO UpdateGasCleanerDTO)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            if (UpdateGasCleanerDTO.StationaryIZAVToOut == null || !await _stationaryIZAVRepo.StationaryIZAVExists(UpdateGasCleanerDTO.StationaryIZAVToOut.Value))
+            {
+                return NotFound("Stationary IZAV is not found");
+            }
+
+            if (UpdateGasCleanerDTO.SectorID == null || !await _sectorRepo.SectorExists(UpdateGasCleanerDTO.SectorID.Value))
+            {
+                return BadRequest("Sector is not found");
+            }
+
+            var GasCleanerModel = await _gasCleanerRepo.UpdateAsync(Id, UpdateGasCleanerDTO.ToGasCleanerFromUpdateDTO());
+
+            if (GasCleanerModel == null)
+            {
+                return NotFound("GasCleaner is not found");
+            }
+
+            return Ok(GasCleanerModel.ToGasCleanerDTO());
+        }
+
 
         [HttpDelete]
         [Route("{Id:int}")]

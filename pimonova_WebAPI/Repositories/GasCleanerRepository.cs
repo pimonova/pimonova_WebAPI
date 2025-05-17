@@ -15,7 +15,10 @@ namespace pimonova_WebAPI.Repositories
 
         public async Task<GasCleaner> CreateAsync(GasCleaner GasCleanerModel)
         {
-            throw new NotImplementedException();
+            await _context.GasCleaners.AddAsync(GasCleanerModel);
+            await _context.SaveChangesAsync();
+
+            return GasCleanerModel;
         }
 
         public async Task<GasCleaner?> DeleteAsync(int Id)
@@ -45,7 +48,23 @@ namespace pimonova_WebAPI.Repositories
 
         public async Task<GasCleaner> UpdateAsync(int Id, GasCleaner GasCleanerModel)
         {
-            throw new NotImplementedException();
+            var ExistingGasCleaner = await _context.GasCleaners.FindAsync(Id);
+
+            if (ExistingGasCleaner == null)
+            {
+                return null;
+            }
+
+            ExistingGasCleaner.SectorID = GasCleanerModel.SectorID;
+            ExistingGasCleaner.NumberInCompany = GasCleanerModel.NumberInCompany;
+            ExistingGasCleaner.Name = GasCleanerModel.Name;
+            ExistingGasCleaner.Type = GasCleanerModel.Type;
+            ExistingGasCleaner.Brand = GasCleanerModel.Brand;
+            ExistingGasCleaner.StationaryIZAVToOut = GasCleanerModel.StationaryIZAVToOut;
+
+            await _context.SaveChangesAsync();
+
+            return ExistingGasCleaner;
         }
     }
 }

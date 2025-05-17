@@ -75,7 +75,7 @@ namespace pimonova_WebAPI.Controllers
             var ObjectOfNEIModel = ObjectOfNEIRequestDTO.ToObjectOfNEIFromCreateDTO(CompanyId);
             await _objectOfNEIRepo.CreateAsync(ObjectOfNEIModel);
 
-            return CreatedAtAction(nameof(GetById), new {Id = ObjectOfNEIModel.CompanyID}, ObjectOfNEIModel.ToObjectOfNEIDTO());
+            return CreatedAtAction(nameof(GetById), new {Id = ObjectOfNEIModel.ObjectOfNEIID}, ObjectOfNEIModel.ToObjectOfNEIDTO());
         }
 
         [HttpPut]

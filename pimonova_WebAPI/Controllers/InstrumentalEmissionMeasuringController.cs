@@ -68,7 +68,7 @@ namespace pimonova_WebAPI.Controllers
             var InstrumentalEmissionMeasuringModel = InstrumentalEmissionMeasuringRequestDTO.ToInstrumentalEmissionMeasuringFromCreateDTO(StationaryIZAVId);
             await _instrumentalEmissionMeasuringRepo.CreateAsync(InstrumentalEmissionMeasuringModel);
 
-            return CreatedAtAction(nameof(GetById), new { Id = InstrumentalEmissionMeasuringModel.StationaryIZAVID }, InstrumentalEmissionMeasuringModel.ToInstrumentalEmissionMeasuringDTO());
+            return CreatedAtAction(nameof(GetById), new { Id = InstrumentalEmissionMeasuringModel.ResultID }, InstrumentalEmissionMeasuringModel.ToInstrumentalEmissionMeasuringDTO());
         }
 
         [HttpPut]

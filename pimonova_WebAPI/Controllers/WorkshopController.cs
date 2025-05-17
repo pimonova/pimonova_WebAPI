@@ -69,7 +69,7 @@ namespace pimonova_WebAPI.Controllers
             var WorkshopModel = WorkshopRequestDTO.ToWorkshopFromCreateDTO(ObjectOfNEIId);
             await _workshopRepo.CreateAsync(WorkshopModel);
 
-            return CreatedAtAction(nameof(GetById), new {Id = WorkshopModel.ObjectOfNEIID}, WorkshopModel.ToWorkshopDTO());
+            return CreatedAtAction(nameof(GetById), new {Id = WorkshopModel.WorkshopID}, WorkshopModel.ToWorkshopDTO());
         }
 
         [HttpPut]

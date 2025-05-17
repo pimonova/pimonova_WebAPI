@@ -68,7 +68,7 @@ namespace pimonova_WebAPI.Controllers
             var MobileIZAVModel = MobileIZAVRequestDTO.ToMobileIZAVFromCreateDTO(SectorId);
             await _mobileIZAVRepo.CreateAsync(MobileIZAVModel);
 
-            return CreatedAtAction(nameof(GetById), new { Id = MobileIZAVModel.SectorID }, MobileIZAVModel.ToMobileIZAVDTO());
+            return CreatedAtAction(nameof(GetById), new { Id = MobileIZAVModel.MobileIZAVID }, MobileIZAVModel.ToMobileIZAVDTO());
         }
 
         [HttpPut]
