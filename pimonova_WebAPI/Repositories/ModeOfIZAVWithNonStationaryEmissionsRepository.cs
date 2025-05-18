@@ -16,7 +16,7 @@ namespace pimonova_WebAPI.Repositories
 
         public Task<bool> ModeOfIZAVWithNonStationaryEmissionsExists(int Id)
         {
-            throw new NotImplementedException();
+            return _context.ModesOfIZAVWithNonStationaryEmissions.AnyAsync(x => x.ModeID == Id);
         }
 
         public async Task<ModeOfIZAVWithNonStationaryEmissions> CreateAsync(ModeOfIZAVWithNonStationaryEmissions ModeOfIZAVWithNonStationaryEmissionsModel)

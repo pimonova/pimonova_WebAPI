@@ -1,14 +1,9 @@
-﻿using pimonova_WebAPI.Models;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace pimonova_WebAPI.DTOs.SourceOfPollutants
 {
-    public class SourceOfPollutantsDTO
+    public class UpdateSourceOfPollutantsRequestDTO
     {
-        [Key]
-        [Required]
-        public int SourceID { get; set; }
-
         [Required]
         public int? SectorID { get; set; }
 

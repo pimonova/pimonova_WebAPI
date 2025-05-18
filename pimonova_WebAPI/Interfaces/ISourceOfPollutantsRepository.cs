@@ -9,5 +9,6 @@ namespace pimonova_WebAPI.Interfaces
         Task<SourceOfPollutants> CreateAsync(SourceOfPollutants SourceOfPollutantsModel);
         Task<SourceOfPollutants> UpdateAsync(int Id, SourceOfPollutants SourceOfPollutantsModel);
         Task<SourceOfPollutants?> DeleteAsync(int Id);
+        Task<bool> SourceOfPollutantsExists(int Id);
     }
 }
