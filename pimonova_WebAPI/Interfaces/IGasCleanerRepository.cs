@@ -9,5 +9,6 @@ namespace pimonova_WebAPI.Interfaces
         Task<GasCleaner> CreateAsync(GasCleaner GasCleanerModel);
         Task<GasCleaner> UpdateAsync(int Id, GasCleaner GasCleanerModel);
         Task<GasCleaner?> DeleteAsync(int Id);
+        Task<bool> GasCleanerExists(int Id);
     }
 }

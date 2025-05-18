@@ -36,6 +36,11 @@ namespace pimonova_WebAPI.Repositories
             return GasCleanerModel;
         }
 
+        public Task<bool> GasCleanerExists(int Id)
+        {
+            return _context.GasCleaners.AnyAsync(x => x.GasCleanerID == Id);
+        }
+
         public async Task<List<GasCleaner>> GetAllAsync()
         {
             return await _context.GasCleaners.ToListAsync();
