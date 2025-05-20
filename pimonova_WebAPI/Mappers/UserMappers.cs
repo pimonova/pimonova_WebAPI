@@ -1,7 +1,9 @@
-﻿using pimonova_WebAPI.DTOs.ObjectOfNEI;
+﻿using Microsoft.AspNetCore.Identity;
+using pimonova_WebAPI.DTOs.ObjectOfNEI;
 using pimonova_WebAPI.DTOs.User;
 using pimonova_WebAPI.Models;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.Design;
 
 namespace pimonova_WebAPI.Mappers
 {
@@ -15,7 +17,7 @@ namespace pimonova_WebAPI.Mappers
                 Name = UserModel.Name,
                 Surname = UserModel.Surname,
                 Email = UserModel.Email,
-                //Role = UserModel.Role,
+                Role = UserModel.Role,
                 Position = UserModel.Position,
                 CompanyID = UserModel.CompanyID,
             };
@@ -23,17 +25,33 @@ namespace pimonova_WebAPI.Mappers
 
         public static User ToUserFromCreateDTO(this CreateUserRequestDTO UserDTO, int CompanyId)
         {
-            return new User
+            var Hasher = new PasswordHasher<User>();
+            //return new User
+            //{
+            //    Name = UserDTO.Name,
+            //    Surname = UserDTO.Surname,
+            //    Email = UserDTO.Email,
+            //    //Role = UserDTO.Role,
+            //    Position = UserDTO.Position,
+            //    CompanyID = CompanyId,
+            //    Login = UserDTO.Login,
+            //    PasswordHash = UserDTO.Password
+            //};
+
+            var User = new User
             {
                 Name = UserDTO.Name,
                 Surname = UserDTO.Surname,
                 Email = UserDTO.Email,
-                //Role = UserDTO.Role,
+                Role = "User",
                 Position = UserDTO.Position,
                 CompanyID = CompanyId,
                 Login = UserDTO.Login,
-                Password = UserDTO.Password
+                //PasswordHash = UserDTO.Password
             };
+
+            User.PasswordHash = Hasher.HashPassword(User, UserDTO.Password);
+            return User;
         }
 
         public static User ToUserFromUpdateDTO(this UpdateUserRequestDTO UserDTO)
@@ -46,6 +64,11 @@ namespace pimonova_WebAPI.Mappers
                 //Role = UserDTO.Role,
                 Position = UserDTO.Position
             };
+        }
+
+        public static void MapRoleFromDTO(this User UserModel, UpdateUserRoleRequestDTO UpdateUserRoleDTO)
+        {
+            UserModel.Role = UpdateUserRoleDTO.Role;
         }
     }
 }

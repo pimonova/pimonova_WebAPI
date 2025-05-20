@@ -22,9 +22,10 @@ namespace pimonova_WebAPI.Models
 
         public string Login { get; set; } = string.Empty;
 
-        public string Role => CompanyID == 1? "Admin" : "User"; // права доступа (в приложении)
+        //public string Role => CompanyID == 1? "Admin" : "User"; // права доступа (в приложении)
+        public string Role { get; set; } = string.Empty;
 
-        public string Password { get; set; } = string.Empty;
+        public string PasswordHash { get; set; } = string.Empty;
 
         public bool IsAdmin => Role == "Admin";
     }

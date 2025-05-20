@@ -10,5 +10,7 @@ namespace pimonova_WebAPI.Interfaces
         Task<User> CreateAsync(User UserModel);
         Task<User?> UpdateAsync(int Id, User UserModel);
         Task<User?> DeleteAsync(int Id);
+        Task UpdatePasswordAsync(User UserModel);
+        Task<User?> UpdateUserRoleAsync(int Id, string NewRole);
     }
 }

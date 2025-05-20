@@ -35,14 +35,14 @@ namespace pimonova_WebAPI.Controllers
                 return Unauthorized("Login or password is incorrect");
             }
 
-            var Identity = AuthOptions.GetIdentity(User.Login, User.Password, User);
+            var Identity = AuthOptions.GetIdentity(User.Login, User);
             if (Identity == null)
             {
                 return Unauthorized(); // Неверные учетные данные
             }
 
             // Генерируем токен
-            var Token = AuthOptions.GenerateToken(User.IsAdmin);
+            var Token = AuthOptions.GenerateToken(User.Role);
 
             return Ok(Token); // Возвращаем токен
         }

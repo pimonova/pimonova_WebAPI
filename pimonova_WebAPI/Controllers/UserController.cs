@@ -9,6 +9,10 @@ using static pimonova_WebAPI.Mappers.UserMappers;
 using pimonova_WebAPI.DTOs.Company;
 using pimonova_WebAPI.Helpers;
 using pimonova_WebAPI.DTOs.ObjectOfNEI;
+using Microsoft.AspNetCore.Identity;
+using pimonova_WebAPI.Models;
+using Microsoft.AspNetCore.Authorization;
+using pimonova_WebAPI.Repositories;
 
 namespace pimonova_WebAPI.Controllers
 {
@@ -115,6 +119,45 @@ namespace pimonova_WebAPI.Controllers
             }
 
             return NoContent();
+        }
+
+        [HttpPut("{id:int}/PasswordChange")]
+        public async Task<IActionResult> ChangePassword(int id, [FromBody] ChangeUserPasswordRequestDTO ChangePasswordDTO)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            var UserModel = await _userRepo.GetByIdAsync(id);
+            if (UserModel == null)
+                return NotFound("User not found");
+
+            var Hasher = new PasswordHasher<User>();
+
+            // Проверка текущего пароля
+            var VerificationResult = Hasher.VerifyHashedPassword(UserModel, UserModel.PasswordHash, ChangePasswordDTO.CurrentPassword);
+            if (VerificationResult == PasswordVerificationResult.Failed)
+                return Unauthorized("Current password is incorrect");
+
+            // Хешируем новый пароль и сохраняем
+            UserModel.PasswordHash = Hasher.HashPassword(UserModel, ChangePasswordDTO.NewPassword);
+            await _userRepo.UpdatePasswordAsync(UserModel);
+
+            return Ok("Password updated successfully");
+        }
+
+        [HttpPut("{id}/RoleChange")]
+        [Authorize(Roles = "SuperAdmin")]
+        public async Task<IActionResult> UpdateUserRole(int Id, [FromBody] UpdateUserRoleRequestDTO UpdateUserRoleDTO)
+        {
+            var UserModel = await _userRepo.UpdateUserRoleAsync(Id, UpdateUserRoleDTO.Role);
+
+            if (UserModel == null)
+            {
+                return NotFound();
+            }
+
+            var userDto = UserModel.ToUserDTO();
+            return Ok(userDto);
         }
     }
 }

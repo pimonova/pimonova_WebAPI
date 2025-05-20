@@ -85,5 +85,27 @@ namespace pimonova_WebAPI.Repositories
 
             return ExistingUser;
         }
+
+        public async Task UpdatePasswordAsync(User UserModel)
+        {
+            _context.Users.Update(UserModel);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task<User?> UpdateUserRoleAsync(int Id, string NewRole)
+        {
+            var existingUser = await _context.Users.FindAsync(Id);
+
+            if (existingUser == null)
+            {
+                return null;
+            }
+
+            existingUser.Role = NewRole;
+            await _context.SaveChangesAsync();
+
+            return existingUser;
+        }
+
     }
 }

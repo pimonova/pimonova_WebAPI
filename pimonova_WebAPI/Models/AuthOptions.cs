@@ -10,51 +10,51 @@ namespace pimonova_WebAPI.Models
         public const string ISSUER = "AntoninaPimonova"; // издатель токена
         public const string AUDIENCE = "APIclients"; // потребитель токена
         public static int LifetimeInMin => 180;
-        public static SecurityKey KEY => new SymmetricSecurityKey(Encoding.ASCII.GetBytes("My_super_puper_seeeeecret_keeeyyy-12345678!"));   // ключ для шифрации
+        public static SecurityKey KEY => new SymmetricSecurityKey(
+            Encoding.ASCII.GetBytes("My_super_puper_seeeeecret_keeeyyy-12345678!")
+        );
 
-        //public virtual ICollection<User> Users { get; set; } = new List<User>();
-
-        internal static object GenerateToken(bool IsAdmin = false)
+        internal static object GenerateToken(string role)
         {
-            var Now = DateTime.UtcNow;
+            var now = DateTime.UtcNow;
 
-            var Claims = new List<Claim>
-                {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, "User"),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, IsAdmin?"Admin":"User")
-                };
+            var claims = new List<Claim>
+        {
+            new Claim(ClaimsIdentity.DefaultNameClaimType, "User"),
+            new Claim(ClaimsIdentity.DefaultRoleClaimType, role)
+        };
 
-            ClaimsIdentity Identity = new ClaimsIdentity(Claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-            ClaimsIdentity.DefaultRoleClaimType);
-            // создаем JWT-токен
+            var identity = new ClaimsIdentity(claims, "Token",
+                ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
+
             var jwt = new JwtSecurityToken(
                 issuer: ISSUER,
                 audience: AUDIENCE,
-                notBefore: Now,
-                expires: Now.AddMinutes(LifetimeInMin),
-                claims: Identity.Claims,
-                signingCredentials: new SigningCredentials(KEY, SecurityAlgorithms.HmacSha256)); ;
+                notBefore: now,
+                expires: now.AddMinutes(LifetimeInMin),
+                claims: identity.Claims,
+                signingCredentials: new SigningCredentials(KEY, SecurityAlgorithms.HmacSha256));
+
             var encodedJwt = new JwtSecurityTokenHandler().WriteToken(jwt);
             return new { token = encodedJwt };
         }
 
-        internal static ClaimsIdentity GetIdentity(string Username, string Password, User User)
+        internal static ClaimsIdentity GetIdentity(string username, User user)
         {
-            if (User != null)
+            if (user != null)
             {
                 var claims = new List<Claim>
-                {
-                    new Claim(ClaimsIdentity.DefaultNameClaimType, User.Login),
-                    new Claim(ClaimsIdentity.DefaultRoleClaimType, User.Role)
-                };
-                ClaimsIdentity claimsIdentity =
-                new ClaimsIdentity(claims, "Token", ClaimsIdentity.DefaultNameClaimType,
-                    ClaimsIdentity.DefaultRoleClaimType);
-                return claimsIdentity;
+            {
+                new Claim(ClaimsIdentity.DefaultNameClaimType, user.Login),
+                new Claim(ClaimsIdentity.DefaultRoleClaimType, user.Role)
+            };
+
+                return new ClaimsIdentity(claims, "Token",
+                    ClaimsIdentity.DefaultNameClaimType, ClaimsIdentity.DefaultRoleClaimType);
             }
 
-            // если имя пользователя не найдено
             return null;
         }
     }
+
 }
