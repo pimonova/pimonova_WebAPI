@@ -21,7 +21,6 @@ namespace pimonova_WebAPI.DTOs.StationaryIZAV_Pollutant
         [Required]
         public float PollutantEmissionPower { get; set; }
 
-        [Required]
         public float GrossPollutantEmissionTonsPerYear { get; set; }
 
         [Required]

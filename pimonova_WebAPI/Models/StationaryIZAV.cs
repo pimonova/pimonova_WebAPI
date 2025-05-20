@@ -18,17 +18,17 @@ namespace pimonova_WebAPI.Models
 
         public short AmountOfIZAVWithOneNumber { get; set; }
 
-        public float IZAVHeight { get; set; }
+        public float IZAVHeight { get; set; } // Высота истоника, м
 
-        public float EstuaryDiameter { get; set; }
+        public float EstuaryDiameter { get; set; } // Диаметр устья, если устье круглое
 
         public int NumberInCompany { get; set; }
 
-        public float EstuaryLength { get; set; }
+        public float EstuaryLength { get; set; } // Длина устья, если устье прямоугольное
 
-        public float EstuaryWidth { get; set; }
+        public float EstuaryWidth { get; set; } // Ширина устья, если устье прямоугольное
 
-        public float ArealZAVWidth { get; set; }
+        public float ArealZAVWidth { get; set; } // Ширина площадного источника
 
         public short ModeNumber { get; set; }
 

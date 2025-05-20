@@ -25,7 +25,6 @@ namespace pimonova_WebAPI.DTOs.StationaryIZAV
 
         public float EstuaryWidth { get; set; }
 
-        [Required]
         public float ArealZAVWidth { get; set; }
 
         public short ModeNumber { get; set; }

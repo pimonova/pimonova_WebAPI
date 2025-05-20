@@ -34,7 +34,7 @@ namespace pimonova_WebAPI.DTOs.User
 
         [Required]
         [MinLength(8, ErrorMessage = "Password must be at least 8 characters")]
-        [MaxLength(25, ErrorMessage = "Password must be less than 15 characters")]
+        [MaxLength(16, ErrorMessage = "Password must be less than 16 characters")]
         public string Password { get; set; } = string.Empty;
 
     }

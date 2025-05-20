@@ -15,10 +15,8 @@ namespace pimonova_WebAPI.DTOs.SourceOfPollutants_Pollutant
         [Required]
         public int? PollutantID { get; set; }
 
-        [Required]
         public float PollutantAmountGramsPerSecond { get; set; }
 
-        [Required]
         public float PollutantAmountTonsPerYear { get; set; }
 
         [Required]

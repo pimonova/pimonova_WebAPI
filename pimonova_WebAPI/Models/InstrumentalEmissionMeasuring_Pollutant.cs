@@ -18,11 +18,11 @@ namespace pimonova_WebAPI.Models
 
         public float MassConcentration { get; set; }
 
-        public float PollutantEmission { get; set; }
+        public float PollutantEmission { get; set; } // Выбросы ЗВ г/с
 
-        public float MeanPollutantEmission { get; set; }
+        public float MeanPollutantEmission { get; set; } // Выбросы ЗВ ср. г/с
 
-        public float MaxPollutantEmission { get; set; }
+        public float MaxPollutantEmission { get; set; } // Выбросы ЗВ max г/с
 
         public string MeasuringMethod { get; set; } = string.Empty;
 

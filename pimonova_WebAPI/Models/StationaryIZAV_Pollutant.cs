@@ -16,12 +16,12 @@ namespace pimonova_WebAPI.Models
         public int? PollutantID { get; set; }
         public virtual Pollutant? Pollutant { get; set; }
 
-        public float PollutantConcentration { get; set; }
+        public float PollutantConcentration { get; set; } // Концентрация ЗВ, мг/м3
 
-        public float PollutantEmissionPower { get; set; }
+        public float PollutantEmissionPower { get; set; } // Мощность выброса, г/с
 
-        public float GrossPollutantEmissionTonsPerYear { get; set; }
+        public float GrossPollutantEmissionTonsPerYear { get; set; } // Суммарные годовые (валовые) выбросы режима, т/г
 
-        public float TotalPollutantEmissionTonsPerPeriod { get; set; }
+        public float TotalPollutantEmissionTonsPerPeriod { get; set; } // Итого за год выброс вещества источником, т/г
     }
 }

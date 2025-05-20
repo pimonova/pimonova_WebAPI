@@ -13,13 +13,13 @@ namespace pimonova_WebAPI.Models
         public int? GasCleanerID { get; set; }
         public virtual GasCleaner? GasCleaner { get; set; }
 
-        public short ProjectCleaningDegree { get; set; }
+        public short ProjectCleaningDegree { get; set; } // Проектная степень очистки, %
 
-        public short TrueCleaningDegree { get; set; }
+        public short TrueCleaningDegree { get; set; } // Фактическая степень очистки, %
 
-        public float ProjectProvisionCoeff { get; set; }
+        public float ProjectProvisionCoeff { get; set; } // Нормативный коэффициент обеспеченности
 
-        public float TrueProvisionCoeff { get; set; }
+        public float TrueProvisionCoeff { get; set; } // Фактических коэффициент обеспеченности
 
         public virtual ICollection<ResultOfGasCleanersInspection_Pollutant> ResultsOfGasCleanersInspection_Pollutants { get; set; } = new List<ResultOfGasCleanersInspection_Pollutant>();
     }

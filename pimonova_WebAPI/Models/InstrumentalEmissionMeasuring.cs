@@ -16,19 +16,19 @@ namespace pimonova_WebAPI.Models
         public int? StationaryIZAVID { get; set; }
         public virtual StationaryIZAV? StationaryIZAV { get; set; }
 
-        public float DiameterOfWasteGas { get; set; }
+        public float DiameterOfWasteGas { get; set; } // диаметр отходящих газов
 
-        public float SpeedOfWasteGas { get; set; }
+        public float SpeedOfWasteGas { get; set; } // скорость отходящих газов
 
-        public float VolumetricFlowRateOfWasteGasNC { get; set; }
+        public float VolumetricFlowRateOfWasteGasNC { get; set; } // Объёмный расход отходящих газов при нормальных условиях
 
-        public float TrueVolumetricFlowRateOfWasteGas { get; set; }
+        public float TrueVolumetricFlowRateOfWasteGas { get; set; } // Объёмный расход отходящих газов при фактических условиях
 
-        public short TemperatureOfWasteGas { get; set; }
+        public short TemperatureOfWasteGas { get; set; } // Температура отходящих газов
 
-        public short PressureOfWasteGas { get; set; }
+        public short PressureOfWasteGas { get; set; } // Давление отходящих газов
 
-        public float WaterVaporConcentration { get; set; }
+        public float WaterVaporConcentration { get; set; } // Концентрация паров воды
 
         public virtual ICollection<InstrumentalEmissionMeasuring_Pollutant> InstrumentalEmissionMeasurings_Pollutants { get; set; } = new List<InstrumentalEmissionMeasuring_Pollutant>();
 
