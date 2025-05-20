@@ -49,6 +49,11 @@ namespace pimonova_WebAPI.Repositories
             return await _context.MobileIZAVs.FindAsync(Id);
         }
 
+        public Task<bool> MobileIZAVExists(int Id)
+        {
+            return _context.MobileIZAVs.AnyAsync(x => x.MobileIZAVID == Id);
+        }
+
         public async Task<MobileIZAV> UpdateAsync(int Id, MobileIZAV MobileIZAVModel)
         {
             var ExistingMobileIZAV = await _context.MobileIZAVs.FindAsync(Id);

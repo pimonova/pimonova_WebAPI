@@ -49,7 +49,7 @@ namespace pimonova_WebAPI.Repositories
 
         public Task<bool> PollutantExists(int Id)
         {
-            throw new NotImplementedException();
+            return _context.Pollutants.AnyAsync(x => x.PollutantID == Id);
         }
 
         public async Task<Pollutant?> UpdateAsync(int Id, CreateOrUpdatePollutantRequestDTO PollutantRequestDTO)

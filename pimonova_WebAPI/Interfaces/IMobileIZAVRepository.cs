@@ -9,5 +9,6 @@ namespace pimonova_WebAPI.Interfaces
         Task<MobileIZAV> CreateAsync(MobileIZAV MobileIZAVModel);
         Task<MobileIZAV> UpdateAsync(int Id, MobileIZAV MobileIZAVModel);
         Task<MobileIZAV?> DeleteAsync(int Id);
+        Task<bool> MobileIZAVExists(int Id);
     }
 }

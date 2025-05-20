@@ -47,6 +47,11 @@ namespace pimonova_WebAPI.Repositories
             return await _context.InstrumentalEmissionMeasurings.FindAsync(Id);
         }
 
+        public Task<bool> InstrumentalEmissionMeasuringExists(int Id)
+        {
+            return _context.InstrumentalEmissionMeasurings.AnyAsync(x => x.ResultID == Id);
+        }
+
         public async Task<InstrumentalEmissionMeasuring> UpdateAsync(int Id, InstrumentalEmissionMeasuring InstrumentalEmissionMeasuringModel)
         {
             var ExistingInstrumentalEmissionMeasuring = await _context.InstrumentalEmissionMeasurings.FindAsync(Id);

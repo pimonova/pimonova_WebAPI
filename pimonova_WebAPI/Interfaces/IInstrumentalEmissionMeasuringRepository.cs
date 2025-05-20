@@ -9,5 +9,6 @@ namespace pimonova_WebAPI.Interfaces
         Task<InstrumentalEmissionMeasuring> CreateAsync(InstrumentalEmissionMeasuring InstrumentalEmissionMeasuringModel);
         Task<InstrumentalEmissionMeasuring> UpdateAsync(int Id, InstrumentalEmissionMeasuring InstrumentalEmissionMeasuringModel);
         Task<InstrumentalEmissionMeasuring?> DeleteAsync(int Id);
+        Task<bool> InstrumentalEmissionMeasuringExists(int Id);
     }
 }
