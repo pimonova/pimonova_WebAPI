@@ -70,5 +70,18 @@ namespace pimonova_WebAPI.Mappers
         {
             UserModel.Role = UpdateUserRoleDTO.Role;
         }
+
+        public static UserWithLoginDTO ToUserWithLoginDTO(this User UserModel)
+        {
+            return new UserWithLoginDTO
+            {
+                UserID = UserModel.UserID,
+                Name = UserModel.Name,
+                Surname = UserModel.Surname,
+                Login = UserModel.Login,
+                CompanyID = UserModel.CompanyID,
+                Role = UserModel.Role,
+            };
+        }
     }
 }

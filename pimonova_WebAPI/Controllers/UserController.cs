@@ -31,7 +31,7 @@ namespace pimonova_WebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> GetAll([FromQuery] QueryObjectForUser Query)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
@@ -80,7 +80,7 @@ namespace pimonova_WebAPI.Controllers
             var UserModel = UserRequestDTO.ToUserFromCreateDTO(CompanyId);
             await _userRepo.CreateAsync(UserModel);
 
-            return CreatedAtAction(nameof(GetById), new {id = UserModel.UserID}, UserModel.ToUserDTO());
+            return CreatedAtAction(nameof(GetById), new { id = UserModel.UserID }, UserModel.ToUserDTO());
         }
 
         [HttpPut]
@@ -104,6 +104,7 @@ namespace pimonova_WebAPI.Controllers
 
         [HttpDelete]
         [Route("{Id:int}")]
+        [Authorize(Roles = "SuperAdmin")]
         public async Task<IActionResult> Delete([FromRoute] int Id)
         {
             if (!ModelState.IsValid)
@@ -158,6 +159,21 @@ namespace pimonova_WebAPI.Controllers
 
             var userDto = UserModel.ToUserDTO();
             return Ok(userDto);
+        }
+
+        [HttpGet("GetInfoWithLogin")]
+        public async Task<IActionResult> InfoWithLogin()
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            var Users = await _userRepo.GetInfoWithLoginAsync();
+
+            var UserDTOs = Users.Select(s => s.ToUserWithLoginDTO());
+
+            return Ok(UserDTOs);
         }
     }
 }

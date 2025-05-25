@@ -12,5 +12,6 @@ namespace pimonova_WebAPI.Interfaces
         Task<User?> DeleteAsync(int Id);
         Task UpdatePasswordAsync(User UserModel);
         Task<User?> UpdateUserRoleAsync(int Id, string NewRole);
+        Task<List<User>> GetInfoWithLoginAsync();
     }
 }

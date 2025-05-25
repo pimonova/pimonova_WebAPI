@@ -16,16 +16,16 @@ namespace pimonova_WebAPI.DTOs.User
         [EmailAddress]
         public string Email { get; set; } = string.Empty;
 
-        [Required]
-        public string Role { get; set; } = string.Empty;
+        //[Required]
+        //public string Role { get; set; } = string.Empty;
 
         [Required]
         [MinLength(2, ErrorMessage = "Position must be at least 2 characters")]
         [MaxLength(200, ErrorMessage = "Position must be less than 200 characters")]
         public string Position { get; set; } = string.Empty;
 
-        [Required]
-        public int? CompanyID { get; set; }
+        //[Required]
+        //public int? CompanyID { get; set; }
 
         [Required]
         [MinLength(2, ErrorMessage = "Login must be at least 4 characters")]

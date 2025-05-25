@@ -100,6 +100,7 @@ namespace pimonova_WebAPI.Controllers
 
         [HttpDelete]
         [Route("{Id:int}")]
+        [Authorize(Roles = "Admin")]
         public async Task<IActionResult> Delete([FromRoute] int Id)
         {
             if (!ModelState.IsValid)
@@ -132,8 +133,7 @@ namespace pimonova_WebAPI.Controllers
             return Ok(CompanyWithObjectsCount);
         }
 
-        [HttpGet("{Id:int}/countUsers")]
-        [Authorize(Roles = "Admin")]
+        [HttpGet("{Id:int}/СountUsers")]
         public async Task<IActionResult> CountUsers([FromRoute] int Id)
         {
             if (!ModelState.IsValid) return BadRequest(ModelState);

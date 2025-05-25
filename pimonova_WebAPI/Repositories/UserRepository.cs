@@ -66,6 +66,11 @@ namespace pimonova_WebAPI.Repositories
             return await _context.Users.FindAsync(Id);
         }
 
+        public async Task<List<User>> GetInfoWithLoginAsync()
+        {
+            return await _context.Users.ToListAsync();
+        }
+
         public async Task<User?> UpdateAsync(int Id, User UserModel)
         {
             var ExistingUser = await _context.Users.FindAsync(Id);
